@@ -13,7 +13,6 @@ main.landing-page {
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 70vh;
 }
 
 main.landing-page .landing-banner {
@@ -40,7 +39,7 @@ main.landing-page .landing-banner p {
     font-size: 1.5rem;
     animation: fade-in 1s linear 3s forwards;
     opacity: 0;
-    width: 60vw;
+    width: 80vw;
     text-align: justify;
     line-height: 2rem;
     letter-spacing: 0.125rem;
@@ -84,11 +83,13 @@ section.nav-container {
     width: 100vw;
     display: flex;
     justify-content: space-evenly;
+    background:rgb(146, 127, 197);
 }
 
 section.nav-container h2 {
     text-decoration: none;
     position: relative;
+    color: rgb(83, 65, 133);
 }
 
 section.nav-container h2::after {
@@ -98,7 +99,7 @@ section.nav-container h2::after {
     bottom: 0;
     left: 0;
     right: 90%;
-    background: purple;
+    background: rgb(83, 65, 133);
     border-radius: 50px;
     transition: all 0.5s ease;
 }
@@ -110,4 +111,55 @@ section.nav-container h2:hover::after {
     bottom: 0;
     left: 0;
     right: 0%;
+}
+
+
+/* Header */
+
+header {
+    background-color:rgb(35, 35, 68);
+    color: rgb(169, 169, 236);
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+header .header-buttons {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header .header-buttons button {
+    margin: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    background: rgb(190, 200, 233);
+}
+
+header .header-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .header-text h1 {
+    margin: 1rem;
+    font-size: 3rem;
+}
+
+/* Footer */
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:rgb(71, 71, 122);
+    color:rgb(216, 219, 231);
 }

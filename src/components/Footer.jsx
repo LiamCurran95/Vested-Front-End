@@ -1,3 +1,7 @@
 export default function Footer(){
-    return (<div>footer</div>)
+    return (
+            <footer>
+                <h3>This is a showcase app! Vested does not provide genuine financial advice and should not be treated as such.</h3>
+            </footer>
+        )
     }
