@@ -1,0 +1,113 @@
+main, body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+/* Landing Page */
+
+main.landing-page {
+    background: rgb(145, 145, 223);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 70vh;
+}
+
+main.landing-page .landing-banner {
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.4);
+    padding: 2rem;
+    background: rgb(71, 71, 122);
+    color: rgb(190, 200, 233);
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main.landing-page .landing-banner h1 {
+    font-size: 4rem;
+    animation: fade-in 1s linear 1s forwards;
+    opacity: 0;
+    letter-spacing: 0.25rem;
+}
+
+main.landing-page .landing-banner p {
+    font-size: 1.5rem;
+    animation: fade-in 1s linear 3s forwards;
+    opacity: 0;
+    width: 60vw;
+    text-align: justify;
+    line-height: 2rem;
+    letter-spacing: 0.125rem;
+}
+
+main.landing-page .landing-banner .button-container {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 2rem;
+    animation: fade-in 1s linear 5s forwards;
+    opacity: 0;
+}
+
+main.landing-page .landing-banner .button-container button {
+    height: 5vh;
+    width: 10vw;
+    border-radius: 20px;
+    cursor: pointer;
+    color:rgb(35, 35, 68);
+    text-transform: uppercase;
+    font-weight: bolder;
+    background:rgb(216, 219, 231);
+
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    } 100% {
+        opacity: 1;
+    }
+}
+
+
+/* Navigation */
+
+
+section.nav-container {
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+section.nav-container h2 {
+    text-decoration: none;
+    position: relative;
+}
+
+section.nav-container h2::after {
+    content: '';
+    position: absolute;
+    top: 90%;
+    bottom: 0;
+    left: 0;
+    right: 90%;
+    background: purple;
+    border-radius: 50px;
+    transition: all 0.5s ease;
+}
+
+section.nav-container h2:hover::after {
+    content: '';
+    position: absolute;
+    top: 90%;
+    bottom: 0;
+    left: 0;
+    right: 0%;
+}
