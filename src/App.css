@@ -352,3 +352,40 @@ footer {
 .info-illustration {
   max-width: 500px;
 }
+
+
+/* News Feed */
+
+main.news-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,rgb(189, 181, 221), rgb(169, 162, 238), rgb(221, 220, 236), rgb(189, 181, 221), rgb(221, 220, 236), rgb(198, 178, 236));
+}
+
+main.news-feed ul {
+    list-style-type: none;
+}
+
+main.news-feed ul li {
+    margin: 5rem;
+}
+
+main.news-feed ul li img {
+    width: 20vw;
+    height: 15vh;
+    object-fit: cover;
+}
+
+/* main.news-feed ul li h4 {
+
+}
+
+main.news-feed ul li p {
+
+}
+
+main.news-feed ul li a {
+
+} */

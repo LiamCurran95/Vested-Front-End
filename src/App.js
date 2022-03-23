@@ -11,7 +11,6 @@ import UserProfile from './components/UserProfile';
 import NewsFeed from './components/NewsFeed';
 import InfoPage from './components/InfoPage';
 import { UserContext } from './context/userContext';
-import { ThemeContext } from './context/themeContext';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -34,7 +33,8 @@ function App() {
     achievements: [],
     newUser: false,
     theme: "light"
-  })
+  }
+  )
 
   return (
     <BrowserRouter>

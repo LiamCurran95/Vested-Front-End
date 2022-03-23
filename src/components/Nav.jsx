@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import {useContext} from "react"
 import { UserContext } from "../context/userContext";
-import { ThemeContext } from "../context/themeContext";
 
 export default function Nav(){
 
@@ -15,8 +14,8 @@ export default function Nav(){
                 <h2><Link to="/infopage" style={{textDecoration: "none"}}>What is ESG?</Link></h2>
                 <h2><Link to="/form" style={{textDecoration: "none"}}>New Portfolio</Link></h2>
                 <span>
-                    {loggedInUser.username}
-                    <img className="nav-img-avatar" src={loggedInUser.avatarUrl} alt="logged in user" />
+                    {loggedInUser ? loggedInUser.username : <p>Sign In</p>}
+                    {loggedInUser ? <img className="nav-img-avatar" src={loggedInUser.avatarUrl} alt="logged in user" /> : ""}
                 </span>
             </section>
         )

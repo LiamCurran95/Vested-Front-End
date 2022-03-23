@@ -1,12 +1,9 @@
-import UserBanner from "./UserBanner"
-import UserPortfolioView from "./UserPortfolioView"
 import {useContext, useState, useEffect} from "react"
 import { UserContext } from "../context/userContext";
 
 export default function UserProfile(){
 
     const {loggedInUser} = useContext(UserContext)
-    const {portfolios} = loggedInUser
 
 
 
@@ -16,21 +13,25 @@ export default function UserProfile(){
     useEffect(()=> {
         setIsLoading(true)
         let info = []
-        for(let portfolio in portfolios) {
-            const companyList = portfolios[portfolio]
-            info.push(companyList)
+        if(loggedInUser){
+                const {portfolios} = loggedInUser
+                for(let portfolio in portfolios) {
+                const companyList = portfolios[portfolio]
+                info.push(companyList)
+            }
         }
+       
         setUserPortfolios(info)
         setIsLoading(false)
 
-    },[portfolios])
+    },[loggedInUser])
     
 
-
-    return isLoading ? <p>Profile is loading</p> : (
+    if(!loggedInUser) return <p>No User Logged In</p>
+    else return isLoading ? <p>Profile is loading</p> : (
         <main className="user-profile">
             <section className="user-banner">
-            <img src={loggedInUser.avatarUrl}></img>
+            <img src={loggedInUser.avatarUrl} alt="logged in user profile"></img>
             <div className="profile-text-container">
                 <h2>{loggedInUser.username}</h2>
                 <ul>
