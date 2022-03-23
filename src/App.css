@@ -113,6 +113,14 @@ section.nav-container h2:hover::after {
     right: 0%;
 }
 
+.nav-img-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
 
 /* Header */
 
@@ -276,6 +284,63 @@ main.log-in .disclaimer-text h4 {
     font-size: 1.5rem;
 }
 
+/* User Profile */
+
+main.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg,rgb(139, 128, 187), rgb(125, 117, 197), rgb(155, 128, 206));
+}
+
+main.user-profile section.user-banner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90vw;
+    padding: 1rem;
+}
+
+main.user-profile section.user-banner img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid white;
+    object-fit: cover;
+    margin: 1rem;
+}
+
+main.user-profile section.user-banner .profile-text-container {
+    color:rgb(35, 35, 68);
+    text-align: center;
+}
+
+main.user-profile section.user-banner .profile-text-container h2 {
+    margin: 1rem 3rem;
+    font-size: 3rem;
+}
+
+main.user-profile section.user-banner .profile-text-container ul {
+    display: flex;
+    list-style: none;
+}
+
+main.user-profile section.user-banner .profile-text-container ul li {
+    margin: 1rem;
+}
+
+
+main.user-profile section.user-portfolio-list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+main.user-profile section.user-portfolio-list li {
+    margin: 5vh 15vw;
+    list-style-type: none;
+    font-size: 1.5rem;
+}
 
 /* Footer */
 
