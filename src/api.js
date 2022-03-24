@@ -10,7 +10,6 @@ export const fetchCompanyDetails = (companyName, googleKey) => {
       `/entities:search?limit=1&indent=True&query=${companyName}&types=Thing,Organization,Corporation,Company&key=${googleKey}`
     )
     .then((res) => {
-      console.log('in the api call', res.data.itemListElement[0].result);
       return res.data.itemListElement[0].result;
     })
     .catch((err) => {
