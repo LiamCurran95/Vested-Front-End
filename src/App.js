@@ -10,31 +10,32 @@ import Form from './components/Form';
 import UserProfile from './components/UserProfile';
 import NewsFeed from './components/NewsFeed';
 import InfoPage from './components/InfoPage';
+import CompanyCard from './components/CompanyCard';
 import { UserContext } from './context/userContext';
 import { ThemeContext } from './context/themeContext';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState(
-    {
-    username: "jessjelly",
-    email: "jessjelly@yahoo.com",
-    avatarUrl: "https://images.unsplash.com/photo-1606005600469-f012fe104a4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1240&q=80",
+  const [loggedInUser, setLoggedInUser] = useState({
+    username: 'jessjelly',
+    email: 'jessjelly@yahoo.com',
+    avatarUrl:
+      'https://images.unsplash.com/photo-1606005600469-f012fe104a4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1240&q=80',
     form_answers: {
       environmentalRating: 4,
       socialRating: 3,
-      governanceRating: 2
+      governanceRating: 2,
     },
     portfolios: {
-      portfolio1: ["COST", "ABT", "ANET", "FR", "A"],
-      portfolio2: ["WM", "DHR", "DAR", "KEYS", "GS"],
-      portfolio3: ["FB", "WCC", "XLNX", "CDNS", "SMTC"]
+      portfolio1: ['Costco', 'ABT', 'ANET', 'FR', 'A'],
+      portfolio2: ['Waste Management', 'DHR', 'DAR', 'KEYS', 'GS'],
+      portfolio3: ['Meta', 'WCC', 'XLNX', 'CDNS', 'SMTC'],
     },
     achievements: [],
     newUser: false,
-    theme: "light"
-  })
+    theme: 'light',
+  });
 
   return (
     <BrowserRouter>
@@ -50,6 +51,7 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/newsfeed" element={<NewsFeed />} />
             <Route path="/infopage" element={<InfoPage />} />
+            <Route path="/companyinfo/:company" element={<CompanyCard />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
           <Footer />
