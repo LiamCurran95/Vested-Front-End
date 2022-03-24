@@ -2,6 +2,7 @@ import UserBanner from "./UserBanner"
 import UserPortfolioView from "./UserPortfolioView"
 import {useContext, useState, useEffect} from "react"
 import { UserContext } from "../context/userContext";
+import { Link } from "react-router-dom";
 
 export default function UserProfile(){
 
@@ -45,7 +46,7 @@ export default function UserProfile(){
                 {userPortfolios.map((portfolio, index) => {
                     return (
                         <li key={index}>
-                            <p>{portfolio[0]}</p>
+                            <Link to={`/companyinfo/${portfolio[0]}`}>{portfolio[0]}</Link>
                             <p>{portfolio[1]}</p>
                             <p>{portfolio[2]}</p>
                             <p>{portfolio[3]}</p>
