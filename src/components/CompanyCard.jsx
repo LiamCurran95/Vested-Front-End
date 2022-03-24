@@ -14,7 +14,6 @@ export default function CompanyCard() {
     setIsLoading(true);
     fetchCompanyDetails(company,googleKey)
     .then((response)=>{
-    console.log(response)
     setCompanyData(response)
     setIsLoading(false);
   }).catch((err)=>console.dir(err))},[company])
