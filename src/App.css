@@ -92,7 +92,7 @@ section.nav-container h2 {
 }
 
 section.nav-container h2::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 90%;
   bottom: 0;
@@ -104,7 +104,7 @@ section.nav-container h2::after {
 }
 
 section.nav-container h2:hover::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 90%;
   bottom: 0;
@@ -113,11 +113,11 @@ section.nav-container h2:hover::after {
 }
 
 .nav-img-avatar {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid white;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid white;
 }
 
 .nav-content-container{
@@ -306,63 +306,66 @@ main.log-in .disclaimer-text h4 {
   font-size: 1.5rem;
 }
 
-
 /* User Profile */
 
 main.user-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(45deg,rgb(139, 128, 187), rgb(125, 117, 197), rgb(155, 128, 206));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    45deg,
+    rgb(139, 128, 187),
+    rgb(125, 117, 197),
+    rgb(155, 128, 206)
+  );
 }
 
 main.user-profile section.user-banner {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 90vw;
-    padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90vw;
+  padding: 1rem;
 }
 
 main.user-profile section.user-banner img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 1px solid white;
-    object-fit: cover;
-    margin: 1rem;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid white;
+  object-fit: cover;
+  margin: 1rem;
 }
 
 main.user-profile section.user-banner .profile-text-container {
-    color:rgb(35, 35, 68);
-    text-align: center;
+  color: rgb(35, 35, 68);
+  text-align: center;
 }
 
 main.user-profile section.user-banner .profile-text-container h2 {
-    margin: 1rem 3rem;
-    font-size: 3rem;
+  margin: 1rem 3rem;
+  font-size: 3rem;
 }
 
 main.user-profile section.user-banner .profile-text-container ul {
-    display: flex;
-    list-style: none;
+  display: flex;
+  list-style: none;
 }
 
 main.user-profile section.user-banner .profile-text-container ul li {
-    margin: 1rem;
+  margin: 1rem;
 }
 
-
 main.user-profile section.user-portfolio-list {
-    display: grid;
-    grid-template-columns: auto auto auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 main.user-profile section.user-portfolio-list li {
-    margin: 5vh 15vw;
-    list-style-type: none;
-    font-size: 1.5rem;
+  margin: 5vh 15vw;
+  list-style-type: none;
+  font-size: 1.5rem;
 }
 /* Footer */
 
@@ -378,4 +381,39 @@ footer {
 
 .info-illustration {
   max-width: 500px;
+}
+
+/* Company Info Page */
+main.company-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    45deg,
+    rgb(139, 128, 187),
+    rgb(125, 117, 197),
+    rgb(155, 128, 206)
+  );
+}
+
+main.company-card section.company-info {
+  display: flex;
+  margin: 1rem;
+}
+
+main.company-card h2 {
+  font-size: 2rem;
+  color: rgb(62, 43, 114);
+}
+
+main.company-card section.company-info-text {
+  align-items: center;
+  padding: 1rem;
+}
+
+main.company-card section.company-info-links {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding-top: 2rem;
 }
