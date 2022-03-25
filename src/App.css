@@ -78,12 +78,12 @@ main.landing-page .landing-banner .button-container button {
 
 /* Navigation */
 
-section.nav-container {
+/* section.nav-container {
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
   background: rgb(146, 127, 197);
-}
+}  */
 
 section.nav-container h2 {
   text-decoration: none;
@@ -118,6 +118,33 @@ section.nav-container h2:hover::after {
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid white;
+}
+
+.nav-content-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+.dropdown-content {
+  position: absolute;
+  z-index: 1;
+}
+
+#hide{
+  display: none;
+}
+
+#show{
+  display: block;
 }
 
 /* Header */
