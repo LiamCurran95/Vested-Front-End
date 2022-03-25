@@ -11,7 +11,7 @@ const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-const {loggedInUser: {username}} = useContext(UserContext)
+const {loggedInUser} = useContext(UserContext)
 const [portfolioResults, setPortfolioResults] = useState([])
 
 export default function Form() {
@@ -24,7 +24,7 @@ export default function Form() {
     console.log(envValue, socValue, govValue)
     alert("portfolio generated! click here to view: ")
 
-    setPortfolioResults(generatePortfolio(envValue, socValue, govValue, username))
+    setPortfolioResults(generatePortfolio(envValue, socValue, govValue, loggedInUser))
     //add ID to portfolio before posting to db
     //Link to profile
   }

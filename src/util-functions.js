@@ -1,5 +1,7 @@
 export const generatePortfolio = async (envVal, socVal, govVal, user) => {
 
+      const {username, formAnswers1, formAnswers2, formAnswers3} = user
+
       const esgData = await api.getEsgData()
 
       const weightedEsg = esgData.map(company => {
@@ -20,13 +22,13 @@ export const generatePortfolio = async (envVal, socVal, govVal, user) => {
 
         const scoredCompanies = today.map((company, index) => {
           
-            if(company.averagePrice > march[index].averagePrice + 40){
+            if(company.averagePrice > march[index].averagePrice*1.5){
               company.score = 2000
-            } else if (company.averagePrice > march[index].averagePrice + 20) {
+            } else if (company.averagePrice > march[index].averagePrice*1.25) {
               company.score = 1000
-            } else if (company.averagePrice < march[index].averagePrice - 20) {
+            } else if (company.averagePrice < march[index].averagePrice*0.75) {
               company.score = -1000
-            } else if (company.averagePrice < march[index].averagePrice - 40) {
+            } else if (company.averagePrice < march[index].averagePrice*0.5) {
               company.score = -2000
             } else {
               company.score = 0
@@ -61,10 +63,10 @@ export const generatePortfolio = async (envVal, socVal, govVal, user) => {
         return entry.company
       })
 
-      //generate "answers" based on conditional logic of whether userContext-loggedInUser has formanswers1 2 or 3 filled
-      
-      await api.updateUserFormAnswers(user, answers, env, soc, gov)
-      await api.updatePortfolioOfUser(portfolioTickers, user)
+      const answers = formAnswers1.length === 0 ? "formAnswers1" : formAnswers2.length === 0 ? "formAnswers2" : "formAnswers3"
+
+      await api.updateUserFormAnswers(username, answers, env, soc, gov)
+      await api.updatePortfolioOfUser(portfolioTickers, username)
 
       return portfolioNames
     }
