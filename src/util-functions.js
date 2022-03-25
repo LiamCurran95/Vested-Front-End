@@ -1,6 +1,6 @@
 export const generatePortfolio = async (envVal, socVal, govVal, user) => {
 
-      const {username, formAnswers1, formAnswers2, formAnswers3} = user
+      const {username, formAnswers1, formAnswers2} = user
 
       const esgData = await api.getEsgData()
 
