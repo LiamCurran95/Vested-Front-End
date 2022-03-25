@@ -1,13 +1,18 @@
 import FormStockList from "./FormStocklist"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
+import UserContext from "../context/userContext"
+import {generatePortfolio} from "../util-functions"
 
 const Input = styled(MuiInput)`
   width: 42px;
 `;
+
+const {loggedInUser: {username}} = useContext(UserContext)
+const [portfolioResults, setPortfolioResults] = useState([])
 
 export default function Form() {
 
@@ -18,6 +23,8 @@ export default function Form() {
     console.log("posted")
     console.log(envValue, socValue, govValue)
     alert("portfolio generated! click here to view: ")
+
+    setPortfolioResults(generatePortfolio(envValue, socValue, govValue, username))
     //add ID to portfolio before posting to db
     //Link to profile
   }
