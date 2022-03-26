@@ -65,7 +65,7 @@ export const generatePortfolio = async (envVal, socVal, govVal, user) => {
 
       const answers = formAnswers1.length === 0 ? "formAnswers1" : formAnswers2.length === 0 ? "formAnswers2" : "formAnswers3"
 
-      await api.updateUserFormAnswers(username, answers, env, soc, gov)
+      await api.updateUserFormAnswers(username, answers, envVal, socVal, govVal)
       await api.updatePortfolioOfUser(portfolioTickers, username)
 
       return portfolioNames
