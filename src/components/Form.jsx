@@ -1,10 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
 import { UserContext } from '../context/userContext';
-import { generatePortfolio } from "../util-functions";
+import generatePortfolio from "../util-functions";
 import FormStockList from './FormStocklist';
 
 export default function Form() {
@@ -20,14 +20,16 @@ export default function Form() {
   width: 42px;
 `;
 
+  useEffect(()=> {
+    console.log("Portfolio Results -> ", portfolioResults)
+  }, [portfolioResults])
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log('posted');
-    // console.log(envValue, socValue, govValue);
-    alert(`portfolio generated! click here to view: ${loggedInUser} `);
+    console.log(envValue, socValue, govValue);
 
     setPortfolioResults(generatePortfolio(envValue, socValue, govValue, loggedInUser))
-    console.log(portfolioResults)
     // add ID to portfolio before posting to db
     // Link to profile
   }
