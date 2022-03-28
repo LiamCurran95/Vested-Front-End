@@ -84,6 +84,9 @@ export default function Form() {
     <>
       <FormStockList />
       <h3>Answer some short questions about ESG criteria and let Vested generate a suggested portfolio.</h3>
+      <h4>We combine your personal choices on areas that are most important to you with the current stock market in order to decide the best
+        companies for your you to invest in.
+      </h4>
       <h4>How strongly would you rate your interest in the following issues (0 is of less importance, 5 is of most importance)</h4>
 
       <form onSubmit={handleSubmit}>
