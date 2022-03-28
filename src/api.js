@@ -127,10 +127,9 @@ export function getPolygonData() {
     });
 }
 
-export function updatePortfolioOfUser(tickers, username, portfolioOption) {
-    return vestedApi.patch(`/users/${username}/portfolios`, {
-        portfolio: tickers,
-        option: portfolioOption
+export function updatePortfolioOfUser(tickerArr, username, portfolio) {
+    return vestedApi.patch(`/users/${username}/${portfolio}`, {
+        tickers: tickerArr
     })
     .then(({data}) => {
         return data
