@@ -1,5 +1,179 @@
 import FormStockList from "./FormStocklist"
+import { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+import MuiInput from '@mui/material/Input';
 
-export default function Form(){
-    return (<div> <FormStockList/> form here</div>)
+const Input = styled(MuiInput)`
+  width: 42px;
+`;
+
+export default function Form() {
+
+  //handle submit and post to API
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("posted")
+    console.log(envValue, socValue, govValue)
+    alert("portfolio generated! click here to view: ")
+    //add ID to portfolio before posting to db
+    //Link to profile
+  }
+
+  //state for Environment input values 
+
+  const [envValue, setEnvValue] = useState(3);
+
+  const handleEnvSliderChange = (event, newValue) => {
+    setEnvValue(newValue);
+  };
+
+  const handleEnvInputChange = (event) => {
+    setEnvValue(event.target.value === '' ? '' : Number(event.target.value));
+  };
+
+  const handleEnvBlur = () => {
+    if (envValue < 0) {
+      setEnvValue(0);
+    } else if (envValue > 100) {
+      setEnvValue(100);
     }
+  };
+
+  //state for Social input values 
+
+  const [socValue, setSocValue] = useState(3);
+
+  const handleSocSliderChange = (event, newValue) => {
+    setSocValue(newValue);
+  };
+
+  const handleSocInputChange = (event) => {
+    setSocValue(event.target.value === '' ? '' : Number(event.target.value));
+  };
+
+  const handleSocBlur = () => {
+    if (socValue < 0) {
+      setSocValue(0);
+    } else if (socValue > 100) {
+      setSocValue(100);
+    }
+  };
+
+  //state for Government input values 
+
+  const [govValue, setGovValue] = useState(3);
+
+  const handleGovSliderChange = (event, newValue) => {
+    setGovValue(newValue);
+  };
+
+  const handleGovInputChange = (event) => {
+    setGovValue(event.target.value === '' ? '' : Number(event.target.value));
+  };
+
+  const handleGovBlur = () => {
+    if (govValue < 0) {
+      setGovValue(0);
+    } else if (govValue > 100) {
+      setGovValue(100);
+    }
+  };
+
+  return (
+    <>
+      <FormStockList />
+      <h3>Answer some short questions about ESG criteria and let Vested generate a suggested portfolio.</h3>
+      <h4>How strongly would you rate your interest in the following issues (0 is of less importance, 100 is of most importance</h4>
+
+      <form onSubmit={handleSubmit}>
+
+        {/* Input for environment Values */}
+
+        <dt>Environmental issues (an organisation’s environmental footprint, considering factors such as a companies’ carbon emissions, energy consumption and waste production).</dt>
+        <Box sx={{ width: 250 }}>
+          <Slider
+            value={typeof envValue === 'number' ? envValue : 0}
+            onChange={handleEnvSliderChange}
+            aria-labelledby="input-slider"
+            step={1}
+            min={0}
+            max={5}
+          />
+          <Input
+            value={envValue}
+            size="small"
+            onChange={handleEnvInputChange}
+            onBlur={handleEnvBlur}
+            inputProps={{
+              step: null,
+              min: 0,
+              max: 5,
+              type: 'number',
+              'aria-labelledby': 'input-slider',
+            }}
+          />
+        </Box>
+
+        {/* Input for Social Values */}
+
+        <dt>Social issues (e.g. giving back to the community through social welfare and charitable donations, and contributing positively to social issues).</dt>
+        <Box sx={{ width: 250 }}>
+          <Slider
+            value={typeof socValue === 'number' ? socValue : 0}
+            onChange={handleSocSliderChange}
+            aria-labelledby="input-slider"
+            step={1}
+            min={0}
+            max={5}
+          />
+          <Input
+            value={socValue}
+            size="small"
+            onChange={handleSocInputChange}
+            onBlur={handleSocBlur}
+            inputProps={{
+              step: null,
+              min: 0,
+              max: 5,
+              type: 'number',
+              'aria-labelledby': 'input-slider',
+            }}
+          />
+        </Box>
+
+        {/* Input for Governance values */}
+
+        <dt>Ethical Governance (considers how the company is run, for example considering factors related to employee diversity/discrimination, pay ratios, and executive compensation).</dt>
+        <Box sx={{ width: 250 }}>
+          <Slider
+            value={typeof govValue === 'number' ? govValue : 0}
+            onChange={handleGovSliderChange}
+            aria-labelledby="input-slider"
+            step={1}
+            min={0}
+            max={5}
+          />
+          <Input
+            value={govValue}
+            size="small"
+            onChange={handleGovInputChange}
+            onBlur={handleGovBlur}
+            inputProps={{
+              step: null,
+              min: 0,
+              max: 5,
+              type: 'number',
+              'aria-labelledby': 'input-slider',
+            }}
+          />
+        </Box>
+        <button> Generate portfolio </button>
+
+      </form>
+    </>
+  );
+}
+

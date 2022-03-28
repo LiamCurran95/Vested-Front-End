@@ -12,7 +12,6 @@ import NewsFeed from './components/NewsFeed';
 import InfoPage from './components/InfoPage';
 import CompanyCard from './components/CompanyCard';
 import { UserContext } from './context/userContext';
-import { ThemeContext } from './context/themeContext';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
