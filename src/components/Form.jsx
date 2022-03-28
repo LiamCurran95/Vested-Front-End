@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
@@ -20,13 +20,16 @@ export default function Form() {
   width: 42px;
 `;
 
+  useEffect(()=> {
+    console.log("Portfolio Results -> ", portfolioResults)
+  }, [portfolioResults])
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log('posted');
     console.log(envValue, socValue, govValue);
 
     setPortfolioResults(generatePortfolio(envValue, socValue, govValue, loggedInUser))
-    console.log("Portfolio function finished -> ", portfolioResults)
     // add ID to portfolio before posting to db
     // Link to profile
   }

@@ -3,8 +3,6 @@ import * as api from "./api"
 export default async function generatePortfolio (env, soc, gov, user) {
 
       const {username, formAnswers1, formAnswers2} = user
-      
-      console.log(username)
 
       const esgData = await api.getEsgData()
       const weightedEsg = esgData.map(company => {
@@ -69,10 +67,11 @@ export default async function generatePortfolio (env, soc, gov, user) {
 
       const answers = formAnswers1.length === 0 ? "formAnswers1" : formAnswers2.length === 0 ? "formAnswers2" : "formAnswers3"
       const portfolioOption = formAnswers1.length === 0 ? "portfolio1" : formAnswers2.length === 0 ? "portfolio2" : "portfolio3"
+
       console.log(portfolioCompanies)
-      console.log(portfolioTickers)
       console.log(answers)
       console.log(portfolioOption)
+      
       await api.updateUserFormAnswers(username, answers, env, soc, gov)
       await api.updatePortfolioOfUser(portfolioTickers, username, portfolioOption)
 
