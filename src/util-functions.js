@@ -1,4 +1,4 @@
-export const generatePortfolio = async (envVal, socVal, govVal, user) => {
+export const generatePortfolio = async (env, soc, gov, user) => {
 
       const {username, formAnswers1, formAnswers2} = user
 
@@ -8,7 +8,7 @@ export const generatePortfolio = async (envVal, socVal, govVal, user) => {
         const esgCompany = {}
         esgCompany.ticker = company.ticker
         esgCompany.company = company.name
-        esgCompany.score = ((company.socialScore*socVal) + (company.governanceScore*govVal) + (company.environmentScore*envVal))
+        esgCompany.score = ((company.socialScore*soc) + (company.governanceScore*gov) + (company.environmentScore*env))
 
         return esgCompany
       })
@@ -59,13 +59,13 @@ export const generatePortfolio = async (envVal, socVal, govVal, user) => {
         return entry.ticker
       })
 
-      portfolioNames = portfolioCompanies.map(entry => {
+      const portfolioNames = portfolioCompanies.map(entry => {
         return entry.company
       })
 
       const answers = formAnswers1.length === 0 ? "formAnswers1" : formAnswers2.length === 0 ? "formAnswers2" : "formAnswers3"
 
-      await api.updateUserFormAnswers(username, answers, envVal, socVal, govVal)
+      await api.updateUserFormAnswers(username, answers, env, soc, gov)
       await api.updatePortfolioOfUser(portfolioTickers, username)
 
       return portfolioNames
