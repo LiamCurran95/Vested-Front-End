@@ -1,30 +1,36 @@
-import FormStockList from "./FormStocklist"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
+import { UserContext } from '../context/userContext';
+import { generatePortfolio } from "../util-functions";
+import FormStockList from './FormStocklist';
 
-const Input = styled(MuiInput)`
+export default function Form() {
+  // handle submit and post to API
+  const { loggedInUser } = useContext(UserContext);
+  const [portfolioResults, setPortfolioResults] = useState([]);
+  const [envValue, setEnvValue] = useState(3);
+  const [socValue, setSocValue] = useState(3);
+  const [govValue, setGovValue] = useState(3);
+  
+
+  const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-export default function Form() {
-
-  //handle submit and post to API
-
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("posted")
-    console.log(envValue, socValue, govValue)
-    alert("portfolio generated! click here to view: ")
-    //add ID to portfolio before posting to db
-    //Link to profile
+    console.log('posted');
+    // console.log(envValue, socValue, govValue);
+    alert(`portfolio generated! click here to view: ${loggedInUser} `);
+
+    setPortfolioResults(generatePortfolio(envValue, socValue, govValue, loggedInUser))
+    console.log(portfolioResults)
+    // add ID to portfolio before posting to db
+    // Link to profile
   }
-
-  //state for Environment input values 
-
-  const [envValue, setEnvValue] = useState(3);
 
   const handleEnvSliderChange = (event, newValue) => {
     setEnvValue(newValue);
@@ -42,10 +48,6 @@ export default function Form() {
     }
   };
 
-  //state for Social input values 
-
-  const [socValue, setSocValue] = useState(3);
-
   const handleSocSliderChange = (event, newValue) => {
     setSocValue(newValue);
   };
@@ -61,10 +63,6 @@ export default function Form() {
       setSocValue(100);
     }
   };
-
-  //state for Government input values 
-
-  const [govValue, setGovValue] = useState(3);
 
   const handleGovSliderChange = (event, newValue) => {
     setGovValue(newValue);
@@ -86,7 +84,10 @@ export default function Form() {
     <>
       <FormStockList />
       <h3>Answer some short questions about ESG criteria and let Vested generate a suggested portfolio.</h3>
-      <h4>How strongly would you rate your interest in the following issues (0 is of less importance, 100 is of most importance</h4>
+      <h4>We combine your personal choices on areas that are most important to you with the current stock market in order to decide the best
+        companies for your you to invest in.
+      </h4>
+      <h4>How strongly would you rate your interest in the following issues (0 is of less importance, 5 is of most importance)</h4>
 
       <form onSubmit={handleSubmit}>
 
@@ -170,10 +171,9 @@ export default function Form() {
             }}
           />
         </Box>
-        <button> Generate portfolio </button>
+        <button type="submit"> Generate portfolio </button>
 
       </form>
     </>
   );
 }
-
