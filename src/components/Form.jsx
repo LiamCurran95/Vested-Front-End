@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
 import { UserContext } from '../context/userContext';
-import generatePortfolio from "../util-functions";
+import { generatePortfolio } from "../util-functions";
 import { Link } from "react-router-dom"
 import * as api from "../api"
 import ReplaceCompany from "./ReplaceCompany"
@@ -203,7 +203,7 @@ export default function Form() {
               return  (
             <li key={result.company}>
               <h5>{result.company}</h5>
-              < ReplaceCompany  portfolioResults={portfolioResults} setPortfolioResults={setPortfolioResults} index={index}/>
+              {ready === false ? < ReplaceCompany  portfolioResults={portfolioResults} setPortfolioResults={setPortfolioResults} index={index}/> : "" }
             </li>
            )}
           }) : ''

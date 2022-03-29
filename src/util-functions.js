@@ -1,4 +1,3 @@
-
 import * as api from "./api";
 
 export async function generatePortfolio(env, soc, gov, user) {
