@@ -10,7 +10,7 @@ import {
 	Tooltip,
 } from "@visx/xychart";
 
-export default function Chart() {
+export default function Chart({ tickers }) {
 	const { loggedInUser } = useContext(UserContext);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -19,11 +19,11 @@ export default function Chart() {
 	const [portfolio, setPortfolio] = useState([]);
 
 	useEffect(() => {
-		setPortfolio(loggedInUser.portfolio2.tickers);
 		setIsLoading(true);
+		setPortfolio(tickers);
 		api
 			.getPolygonData()
-			.then(({ result }) => {
+			.then((result) => {
 				setData(result);
 				setIsLoading(false);
 				data;
@@ -32,33 +32,11 @@ export default function Chart() {
 				setIsLoading(false);
 				setError({ err });
 			});
-	}, []);
+	}, [tickers]);
 
 	const portfolioStockData = data.filter((item) =>
 		portfolio.includes(item.ticker)
 	);
-
-	/*[
-    {
-        "ticker": "A",
-        "averagePrice": 69.2141,
-        "date": "2020-04-01"
-    },
-    {
-        "ticker": "ABT",
-        "averagePrice": 76.4789,
-        "date": "2020-04-01"
-    },
-    {
-        "ticker": "COST",
-        "averagePrice": 286.1674,
-        "date": "2020-04-01"
-    },
-    {
-        "ticker": "FR",
-        "averagePrice": 30.1558,
-        "date": "2020-04-01"
-    }]*/
 
 	let ticker1ChartData = [];
 	let ticker2ChartData = [];
@@ -84,30 +62,14 @@ export default function Chart() {
 		}
 	});
 
-	const tickerChartData = [
-		{
-			[portfolio[0]]: ticker1ChartData,
-		},
-		{
-			[portfolio[1]]: ticker1ChartData,
-		},
-		{
-			[portfolio[2]]: ticker1ChartData,
-		},
-		{
-			[portfolio[3]]: ticker1ChartData,
-		},
-		{
-			[portfolio[4]]: ticker1ChartData,
-		},
-	];
-
 	const accessors = {
 		xAccessor: (d) => d.x,
 		yAccessor: (d) => d.y,
 	};
 
-	return (
+	return isLoading ? (
+		<p>Portfolio chart is loading</p>
+	) : (
 		<>
 			{/* <button
 				onClick={() => {
@@ -134,46 +96,46 @@ export default function Chart() {
 				{/* conditional logic to render different lines based on selections  */}
 
 				<AnimatedLineSeries
-					id={toggled ? "show" : "hide"}
-					onClick={() => {
-						setToggled(false);
-					}}
+					// id={toggled ? "show" : "hide"}
+					// onClick={() => {
+					// 	setToggled(false);
+					// }}
 					dataKey={`${portfolio[1]}`}
 					data={ticker2ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					id={toggled ? "show" : "hide"}
-					onClick={() => {
-						setToggled(false);
-					}}
+					// id={toggled ? "show" : "hide"}
+					// onClick={() => {
+					// 	setToggled(false);
+					// }}
 					dataKey={`${portfolio[2]}`}
 					data={ticker3ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					id={toggled ? "show" : "hide"}
-					onClick={() => {
-						setToggled(false);
-					}}
+					// id={toggled ? "show" : "hide"}
+					// onClick={() => {
+					// 	setToggled(false);
+					// }}
 					dataKey={`${portfolio[3]}`}
 					data={ticker4ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					id={toggled ? "show" : "hide"}
-					onClick={() => {
-						setToggled(false);
-					}}
+					// id={toggled ? "show" : "hide"}
+					// onClick={() => {
+					// 	setToggled(false);
+					// }}
 					dataKey={`${portfolio[4]}`}
 					data={ticker5ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					id={toggled ? "show" : "hide"}
-					onClick={() => {
-						setToggled(false);
-					}}
+					// id={toggled ? "show" : "hide"}
+					// onClick={() => {
+					// 	setToggled(false);
+					// }}
 					dataKey={`${portfolio[1]}`}
 					data={ticker2ChartData}
 					{...accessors}
@@ -195,7 +157,6 @@ export default function Chart() {
 					)}
 				/>
 			</XYChart>
-			{/* {console.log(ticker1ChartData)} */}
 		</>
 	);
 }
