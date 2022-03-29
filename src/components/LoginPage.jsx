@@ -34,11 +34,10 @@ export default function LoginPage(){
                             e.preventDefault()
                             console.log(emailInputted)
                                 return api.findUser(emailInputted.split("@")[0])
-                                .then(({result}) => {
-                                    console.log(result)
-                                    if(result !== null){
+                                .then((response) => {
+                                    if(response !== null){
                                         console.log("found user")
-                                        setLoggedInUser(result)
+                                        setLoggedInUser(response)
                                         setNewUser(false)
                                     } else {
                                         console.log("didnt find user")

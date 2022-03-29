@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../context/userContext";
 
 export default function Nav() {
 
     const { loggedInUser } = useContext(UserContext)
     const [navClicked, setNavClicked] = useState(false)
+
+    useEffect(()=>{
+        console.log(loggedInUser)
+    }, [loggedInUser])
 
     return (
         <nav className="nav-content-container">
