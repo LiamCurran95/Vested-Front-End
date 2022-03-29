@@ -17,31 +17,64 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
-    username: "jessjelly",
-    email: "jessjelly@yahoo.com",
-    avatarUrl: "./profile_pic.jpeg",
-    formAnswers1: {
-      environmentalRating: 4,
-      socialRating: 3,
-      governanceRating: 2,
-    },
-    formAnswers2: {
-      environmentalRating: 1,
-      socialRating: 4,
-      governanceRating: 3,
-    },
-    formAnswers3: {
-      environmentalRating: 2,
-      socialRating: 4,
-      governanceRating: 4,
-    },
-    portfolio1: { tickers: ["COST", "ABT", "ANET", "FR", "A"] },
-    portfolio2: { tickers: ["WM", "DHR", "DAR", "KEYS", "GS"] },
-    portfolio3: { tickers: ["FB", "WCC", "XLNX", "CDNS", "SMTC"] },
-    achievements: [],
-    newUser: false,
-    theme: "light",
-  });
+_id: "6241d079cf07b86c5f427140",
+username: "jessjelly",
+email: "jessjelly@yahoo.com",
+avatarUrl: "./profile_pic.jpeg",
+formAnswers1: {
+environmentalRating: 4,
+socialRating: 3,
+governanceRating: 2,
+_id: "6241d079cf07b86c5f427141"
+},
+formAnswers2: {
+environmentalRating: 1,
+socialRating: 4,
+governanceRating: 3,
+_id: "6241d079cf07b86c5f427142"
+},
+formAnswers3: {
+environmentalRating: 2,
+socialRating: 4,
+governanceRating: 4,
+_id: "6241d079cf07b86c5f427143"
+},
+portfolio1: {
+tickers: [
+"COST",
+"ABT",
+"ANET",
+"FR",
+"A"
+],
+_id: "6241d079cf07b86c5f427144",
+createdAt: "2022-03-28T15:12:57.266Z"
+},
+portfolio2: {
+tickers: [
+"WM",
+"DHR",
+"DAR",
+"KEYS",
+"GS"
+],
+_id: "6241d079cf07b86c5f427145",
+createdAt: "2022-03-28T15:12:57.266Z"
+},
+portfolio3: {
+tickers: [
+"FB",
+"WCC",
+"XLNX",
+"CDNS",
+"SMTC"
+],
+_id: "6241d079cf07b86c5f427146",
+createdAt: "2022-03-28T15:12:57.267Z"
+},
+newUser: false,
+theme: "light"
+});
 
   return (
     <BrowserRouter>
