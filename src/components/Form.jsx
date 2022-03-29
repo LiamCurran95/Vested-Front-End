@@ -4,34 +4,48 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
 import { UserContext } from '../context/userContext';
-import {generatePortfolio} from "../util-functions";
+import generatePortfolio from "../util-functions";
+import { Link } from "react-router-dom"
+import * as api from "../api"
+import ReplaceCompany from "./ReplaceCompany"
+
+
 import FormStockList from './FormStocklist';
+
 
 export default function Form() {
   // handle submit and post to API
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
   const [portfolioResults, setPortfolioResults] = useState([]);
   const [envValue, setEnvValue] = useState(3);
   const [socValue, setSocValue] = useState(3);
   const [govValue, setGovValue] = useState(3);
-  
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [ready, setReady] = useState(false)
 
   const Input = styled(MuiInput)`
   width: 42px;
 `;
-
-  useEffect(()=> {
-    console.log("Portfolio Results -> ", portfolioResults)
-  }, [portfolioResults])
+  
+  useEffect(() => {
+    if(formSubmitted === true) {
+      return generatePortfolio(envValue, socValue, govValue, loggedInUser)
+      .then(result => {
+        console.log(result)
+        setPortfolioResults(result)
+        setSubmitted(true)
+      })
+    } else {
+      setFormSubmitted(false)
+    }
+  }, [formSubmitted])
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log('posted');
     console.log(envValue, socValue, govValue);
-
-    setPortfolioResults(generatePortfolio(envValue, socValue, govValue, loggedInUser))
-    // add ID to portfolio before posting to db
-    // Link to profile
+    setFormSubmitted(true)
   }
 
   const handleEnvSliderChange = (event, newValue) => {
@@ -82,9 +96,9 @@ export default function Form() {
     }
   };
 
-  return (
+  if(submitted === false) {
+    return (
     <>
-      <FormStockList />
       <h3>Answer some short questions about ESG criteria and let Vested generate a suggested portfolio.</h3>
       <h4>We combine your personal choices on areas that are most important to you with the current stock market in order to decide the best
         companies for your you to invest in.
@@ -178,4 +192,41 @@ export default function Form() {
       </form>
     </>
   );
+  } else {
+    return (
+      <main>
+        <h3>Thank you for submitting your answers</h3>
+        <h4>Here are your portfolio results:</h4>
+        <ul>
+          {portfolioResults.length !== 0 ? portfolioResults.map((result, index) => {
+            if (index < 5) {
+              return  (
+            <li key={result.company}>
+              <h5>{result.company}</h5>
+              < ReplaceCompany  portfolioResults={portfolioResults} setPortfolioResults={setPortfolioResults} index={index}/>
+            </li>
+           )}
+          }) : ''
+          }
+        </ul>
+
+        <Link to={ ready ? "/profile" : "/form" }
+        onClick={()=>{
+          const portfolioTickers = portfolioResults.map(result => {
+            return result.ticker
+          })
+          const finishedPortfolio = portfolioTickers.slice(0,5)
+          const portfolioOption = loggedInUser.portfolio1.tickers.length === 0 ? "portfolio1" : loggedInUser.portfolio2.tickers.length === 0 ? "portfolio2" : "portfolio3"
+
+          api.updatePortfolioOfUser(finishedPortfolio, loggedInUser.username, portfolioOption)
+          .then((result) => {
+            setLoggedInUser(result)
+            setReady(true)
+            console.log(result)
+          })
+        }}
+        >{ ready ? "Go To Profile" : "Confirm Choices" }</Link>
+      </main>
+    )
+  }
 }
