@@ -10,8 +10,8 @@ export default function Nav() {
     return (
         <nav className="nav-content-container">
             <span>
-                {loggedInUser.username ? loggedInUser.username : "No Logged In User"}
-                <img className="nav-img-avatar" src={loggedInUser.avatarUrl ? loggedInUser.avatarUrl : ""} alt="Please Log In" />
+                {loggedInUser? loggedInUser.username : "No Logged In User"}
+                <img className="nav-img-avatar" src={loggedInUser ? loggedInUser.avatarUrl : ""} alt="Please Log In" />
             </span>
             <div className="dropdown">
                 <button className="drop-btn" onClick={() => { navClicked ? setNavClicked(false) : setNavClicked(true) }}>Nav</button>

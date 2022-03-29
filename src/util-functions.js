@@ -2,7 +2,8 @@ import * as api from "./api"
 
 export default async function generatePortfolio (env, soc, gov, user) {
 
-      const {username, formAnswers1, formAnswers2} = user
+      const {username, portfolio1, portfolio2} = user
+      console.log(user)
 
       const esgData = await api.getEsgData()
       const weightedEsg = esgData.map(company => {
@@ -24,14 +25,14 @@ export default async function generatePortfolio (env, soc, gov, user) {
 
         const scoredCompanies = today.map((company, index) => {
           
-            if(company.averagePrice > march[index].averagePrice*1.5){
+            if(company.averagePrice > march[index].averagePrice*1.3){
               company.score = 2000
-            } else if (company.averagePrice > march[index].averagePrice*1.25) {
+            } else if (company.averagePrice > march[index].averagePrice*1.1) {
               company.score = 1000
-            } else if (company.averagePrice < march[index].averagePrice*0.75) {
+            } else if (company.averagePrice < march[index].averagePrice*0.9) {
+              company.score = -1000
+            } else if (company.averagePrice < march[index].averagePrice*0.7) {
               company.score = -2000
-            } else if (company.averagePrice < march[index].averagePrice*0.5) {
-              company.score = -3000
             } else {
               company.score = 0
             }
@@ -57,23 +58,19 @@ export default async function generatePortfolio (env, soc, gov, user) {
 
       const portfolioCompanies = sortedCompletelyScoredData.slice(0, 5);
 
-      const portfolioTickers = portfolioCompanies.map(entry => {
-        return entry.ticker
-      })
+      // const portfolioTickers = portfolioCompanies.map(entry => {
+      //   return entry.ticker
+      // })
 
-      const portfolioNames = portfolioCompanies.map(entry => {
-        return entry.company
-      })
-
-      const answers = formAnswers1.length === 0 ? "formAnswers1" : formAnswers2.length === 0 ? "formAnswers2" : "formAnswers3"
-      const portfolioOption = formAnswers1.length === 0 ? "portfolio1" : formAnswers2.length === 0 ? "portfolio2" : "portfolio3"
+      // const portfolioNames = portfolioCompanies.map(entry => {
+      //   return entry.company
+      // })
+      const answers = portfolio1.tickers.length === 0 ? "formAnswers1" : portfolio2.tickers.length === 0 ? "formAnswers2" : "formAnswers3"
 
       console.log(portfolioCompanies)
       console.log(answers)
-      console.log(portfolioOption)
       
       await api.updateUserFormAnswers(username, answers, env, soc, gov)
-      await api.updatePortfolioOfUser(portfolioTickers, username, portfolioOption)
 
-      return portfolioNames
+      return portfolioCompanies
     }

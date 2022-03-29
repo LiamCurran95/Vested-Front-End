@@ -4,7 +4,7 @@ import { UserContext } from "../context/userContext";
 import * as api from "../api"
 export default function LoginPage(){
     const {loggedInUser, setLoggedInUser} = useContext(UserContext)
-    const [usernameInputted, setUsernameInputted] = useState('')
+    const [emailInputted, setEmailInputted] = useState('')
     const [loggingIn, setLoggingIn] = useState(false)
     const [newUser, setNewUser] = useState()
     const [welcomeMessage, setWelcomeMessage] = useState('Welome Anon')
@@ -12,8 +12,8 @@ export default function LoginPage(){
 
 
     useEffect(() => {
-        setWelcomeMessage("Welcome " + usernameInputted)
-        if(usernameInputted.length !== 0) setLoggingIn(true)
+        setWelcomeMessage("Welcome " + emailInputted.split("@")[0])
+        if(emailInputted.length !== 0) setLoggingIn(true)
         if(newUser === true) {
             return api.postUser(loggedInUser.username)
             .then((res) => {
@@ -32,18 +32,19 @@ export default function LoginPage(){
                 <form className="log-in-form"
                     onSubmit={(e) => {
                             e.preventDefault()
-                            console.log(usernameInputted)
-                                return api.findUser(usernameInputted)
+                            console.log(emailInputted)
+                                return api.findUser(emailInputted.split("@")[0])
                                 .then(({result}) => {
                                     if(result !== null){
+                                        console.log(result)
                                         console.log("found user")
                                         setLoggedInUser(result)
                                         setNewUser(false)
                                     } else {
                                         console.log("didnt find user")
                                         setLoggedInUser({
-                                                username: usernameInputted,
-                                                email: usernameInputted + "@gmail.com",
+                                                username: emailInputted.split("@")[0],
+                                                email: emailInputted,
                                                 avatarUrl: "https://images.unsplash.com/photo-1606005600469-f012fe104a4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1240&q=80",
                                                 formAnswers1: {},
                                                 formAnswers2: {},
@@ -66,13 +67,13 @@ export default function LoginPage(){
                             } 
                     }
                 >
-                    <label>Username</label>
+                    <label>Email Address</label>
                     <input type="text"
-                    placeholder="Enter username here..."
-                    value={usernameInputted}
+                    placeholder="Enter Email here..."
+                    value={emailInputted}
                     onChange={
                         (e) => {
-                            setUsernameInputted(e.target.value)
+                            setEmailInputted(e.target.value)
                         }
                     }></input>
                 </form>

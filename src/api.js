@@ -156,11 +156,14 @@ export function getPolygonData() {
 }
 
 export function updatePortfolioOfUser(tickerArr, username, portfolio) {
+    console.log(tickerArr)
+    console.log(portfolio)
+    console.log(username)
     return vestedApi.patch(`/users/${username}/${portfolio}`, {
         tickers: tickerArr
     })
-    .then(({data}) => {
-        return data
+    .then(({data: {result}}) => {
+        return result
     })
     .catch((err) => {
       console.dir(err);
@@ -177,8 +180,9 @@ export function updateUserFormAnswers(user, answers, env, soc, gov) {
             "governanceRating": gov
         }
     })
-    .then(({data}) => {
-        return data
+    .then(({data: {result}}) => {
+        console.log(result)
+        return result
     })
     .catch((err) => {
       console.dir(err);
