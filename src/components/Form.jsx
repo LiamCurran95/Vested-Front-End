@@ -7,6 +7,7 @@ import { UserContext } from '../context/userContext';
 import generatePortfolio from "../util-functions";
 import { Link } from "react-router-dom"
 import * as api from "../api"
+import ReplaceCompany from "./ReplaceCompany"
 
 export default function Form() {
   // handle submit and post to API
@@ -193,12 +194,14 @@ export default function Form() {
         <h3>Thank you for submitting your answers</h3>
         <h4>Here are your portfolio results:</h4>
         <ul>
-          {portfolioResults.length !== 0 ? portfolioResults.map(result => {
-           return  (
+          {portfolioResults.length !== 0 ? portfolioResults.map((result, index) => {
+            if (index < 5) {
+              return  (
             <li key={result.company}>
               <h5>{result.company}</h5>
+              < ReplaceCompany  portfolioResults={portfolioResults} setPortfolioResults={setPortfolioResults} index={index}/>
             </li>
-           )
+           )}
           }) : ''
           }
         </ul>
@@ -208,9 +211,10 @@ export default function Form() {
           const portfolioTickers = portfolioResults.map(result => {
             return result.ticker
           })
+          const finishedPortfolio = portfolioTickers.slice(0,5)
           const portfolioOption = loggedInUser.portfolio1.tickers.length === 0 ? "portfolio1" : loggedInUser.portfolio2.tickers.length === 0 ? "portfolio2" : "portfolio3"
 
-          api.updatePortfolioOfUser(portfolioTickers, loggedInUser.username, portfolioOption)
+          api.updatePortfolioOfUser(finishedPortfolio, loggedInUser.username, portfolioOption)
           .then((result) => {
             setLoggedInUser(result)
             setReady(true)

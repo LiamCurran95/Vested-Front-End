@@ -56,7 +56,7 @@ export default async function generatePortfolio (env, soc, gov, user) {
 
       const sortedCompletelyScoredData = completelyScoredData.sort((a, b) => (a.score < b.score) ? 1 : -1);
 
-      const portfolioCompanies = sortedCompletelyScoredData.slice(0, 5);
+      const portfolioCompanies = sortedCompletelyScoredData.slice(0, 20);
 
       // const portfolioTickers = portfolioCompanies.map(entry => {
       //   return entry.ticker

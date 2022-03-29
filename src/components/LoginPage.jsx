@@ -35,7 +35,7 @@ export default function LoginPage(){
                             console.log(emailInputted)
                                 return api.findUser(emailInputted.split("@")[0])
                                 .then(({result}) => {
-                                    if(result !== null){
+                                    if(result !== null || result !== undefined){
                                         console.log(result)
                                         console.log("found user")
                                         setLoggedInUser(result)
