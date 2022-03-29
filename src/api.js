@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { newsKey, polygonKey, googleKey } from './secret_info';
+import axios from "axios";
+import { newsKey, polygonKey, googleKey } from "./secret_info";
 
 const googleApi = axios.create({
-  baseURL: 'https://kgsearch.googleapis.com/v1',
+  baseURL: "https://kgsearch.googleapis.com/v1",
 });
 
 export const fetchCompanyDetails = (companyName) => {
@@ -70,7 +70,6 @@ return axios
   })
   .catch((err) => console.log(err));
 }
-
 
 const vestedApi = axios.create({
   baseURL: `https://vested-2022.herokuapp.com/api`,
@@ -141,6 +140,7 @@ export function updatePortfolioOfUser(tickerArr, username, portfolio) {
 }
 
 export function updateUserFormAnswers(user, answers, env, soc, gov) {
+
     return vestedApi.patch(`/users/${user}/${answers}`, {
         formResponses: {
             "environmentalRating": env,
