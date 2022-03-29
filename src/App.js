@@ -18,23 +18,20 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
-    username: 'jessjelly',
-    email: 'jessjelly@yahoo.com',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1606005600469-f012fe104a4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1240&q=80',
-    form_answers: {
-      environmentalRating: 4,
-      socialRating: 3,
-      governanceRating: 2,
-    },
-    portfolios: {
-      portfolio1: ['Costco', 'ABT', 'ANET', 'FR', 'A'],
-      portfolio2: ['Waste Management', 'DHR', 'DAR', 'KEYS', 'GS'],
-      portfolio3: ['Meta', 'WCC', 'XLNX', 'CDNS', 'SMTC'],
-    },
-    achievements: [],
-    newUser: false,
-    theme: 'light',
+        formAnswers1: {},
+        formAnswers2: {},
+        formAnswers3: {},
+        portfolio1: {
+        tickers: []
+        },
+        portfolio2: {
+        tickers: []
+        },
+        portfolio3: {
+        tickers: []
+        },
+        newUser: false,
+        theme: "light"
   });
 
   return (
