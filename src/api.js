@@ -76,10 +76,39 @@ const vestedApi = axios.create({
   baseURL: `https://vested-2022.herokuapp.com/api`,
 });
 
-export function findUser(email) {
-  return vestedApi.get(`/users/${email}`)
-  .then((userDetails) => {
-    return userDetails;
+export function findUser(username) {
+  return vestedApi.get(`/users/${username}`)
+  .then(({data}) => {
+    return data;
+  })
+  .catch((err) => {
+      console.dir(err);
+      throw new Error(err.response.data.msg);
+    });
+}
+
+export function postUser(user) {
+  return vestedApi.post(`/users`, {
+        username : user,
+	    email : user + "@gmail.com",
+        avatarUrl : "https://images.unsplash.com/photo-1606005600469-f012fe104a4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1240&q=80",
+        formAnswers1: {},
+        formAnswers2: {},
+        formAnswers3: {},
+        portfolio1: {
+        tickers: []
+        },
+        portfolio2: {
+        tickers: []
+        },
+        portfolio3: {
+        tickers: []
+        },
+        newUser: false,
+        theme: "light"
+  })
+  .then(({status}) => {
+    return status;
   })
   .catch((err) => {
       console.dir(err);
