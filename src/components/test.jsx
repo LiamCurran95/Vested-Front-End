@@ -13,24 +13,23 @@ import Chart from "./Chart";
 
 export default function UserProfile() {
 	const { loggedInUser } = useContext(UserContext);
-	const [shownPortfolio, setShownPortfolio] = useState(
-		loggedInUser.portfolio1.tickers
-	);
-	const [isLoading, setIsLoading] = useState(true);
-	const userPortfolios = [
+	const [userPortfolios, setUserPortfolios] = useState([
 		{ portfolio1: loggedInUser.portfolio1.tickers },
 		{ portfolio2: loggedInUser.portfolio2.tickers },
 		{ portfolio3: loggedInUser.portfolio3.tickers },
-	];
+	]);
+	const [shownPortfolio, setShownPortfolio] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setIsLoading(true);
 		setIsLoading(false);
-	}, [shownPortfolio]);
+	}, []);
 
 	const changePortfolioView = (param) => {
 		setIsLoading(true);
 		setShownPortfolio(param);
+		console.log(shownPortfolio);
 		setIsLoading(false);
 	};
 
@@ -70,22 +69,21 @@ export default function UserProfile() {
 					Show Portfolio 3
 				</Button>
 			</Stack>
-			<Chart tickers={shownPortfolio} />
 			<>
 				<section className="user-portfolio-list">
 					{shownPortfolio.map((portfolio, index) => {
 						return (
-							<li key={index}>
-								<>
-									{/* <FormGroup>
-										<FormControlLabel
-											control={<Checkbox defaultChecked />}
-											label={`Include ${portfolio} in data vis.`}
-										/>
-									</FormGroup> */}
-								</>
-								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
-							</li>
+							<>
+								{/* <FormGroup>
+									<FormControlLabel
+										control={<Checkbox defaultChecked />}
+										label={`Include ${portfolio} in data vis.`}
+									/>
+								</FormGroup> */}
+								<li key={index}>
+									<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
+								</li>
+							</>
 						);
 					})}
 				</section>
