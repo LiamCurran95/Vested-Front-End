@@ -10,6 +10,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { Link, useParams } from "react-router-dom";
 import Chart from "./Chart";
+import { stockNames } from "../util-functions";
 
 export default function UserProfile() {
 	const { loggedInUser } = useContext(UserContext);
@@ -24,7 +25,8 @@ export default function UserProfile() {
 	];
 
 	useEffect(() => {
-		console.log(loggedInUser);
+		const test = stockNames(shownPortfolio);
+		console.log(test);
 		setIsLoading(true);
 		setIsLoading(false);
 	}, [shownPortfolio]);

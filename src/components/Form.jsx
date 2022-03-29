@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
 import { UserContext } from '../context/userContext';
-import generatePortfolio from "../util-functions";
+import {generatePortfolio} from "../util-functions";
 import FormStockList from './FormStocklist';
 
 export default function Form() {
