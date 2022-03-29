@@ -8,7 +8,7 @@ import UserBanner from "./UserBanner";
 import UserPortfolioView from "./UserPortfolioView";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Chart from "./Chart";
 
 export default function UserProfile() {
@@ -24,6 +24,7 @@ export default function UserProfile() {
 	];
 
 	useEffect(() => {
+		console.log(loggedInUser);
 		setIsLoading(true);
 		setIsLoading(false);
 	}, [shownPortfolio]);
