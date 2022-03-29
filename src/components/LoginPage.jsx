@@ -1,6 +1,7 @@
-import { useState, useContext, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
+
 import * as api from "../api"
 export default function LoginPage(){
     const {loggedInUser, setLoggedInUser} = useContext(UserContext)
@@ -9,7 +10,6 @@ export default function LoginPage(){
     const [newUser, setNewUser] = useState()
     const [welcomeMessage, setWelcomeMessage] = useState('Welome Anon')
     // const emailRegex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
-
 
     useEffect(() => {
         setWelcomeMessage("Welcome " + emailInputted.split("@")[0])
@@ -103,3 +103,4 @@ export default function LoginPage(){
             )
         }
     }
+
