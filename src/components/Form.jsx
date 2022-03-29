@@ -9,6 +9,10 @@ import { Link } from "react-router-dom"
 import * as api from "../api"
 import ReplaceCompany from "./ReplaceCompany"
 
+
+import FormStockList from './FormStocklist';
+
+
 export default function Form() {
   // handle submit and post to API
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);

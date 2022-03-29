@@ -1,8 +1,7 @@
-import * as api from "./api"
+import * as api from "./api";
 
-export async function generatePortfolio (env, soc, gov, user) {
-
-      const {username, portfolio1, portfolio2} = user
+export async function generatePortfolio(env, soc, gov, user) {
+	      const {username, portfolio1, portfolio2} = user
       console.log(user)
 
       const esgData = await api.getEsgData()
@@ -73,4 +72,32 @@ export async function generatePortfolio (env, soc, gov, user) {
       await api.updateUserFormAnswers(username, answers, env, soc, gov)
 
       return portfolioCompanies
-    }
+}
+
+export async function stockNames(tickers) {
+	const portfolioTickers = tickers;
+	const esgData = await api.getEsgData();
+	const x = esgData.filter((item) => {
+		return portfolioTickers.includes(item.ticker);
+	});
+
+	let tickerArr = [];
+	let namesArr = [];
+
+	const tickerNameFilter = x.forEach((stock) => {
+		tickerArr.push(stock.ticker);
+		namesArr.push(stock.name);
+	});
+
+	let pairs = {};
+	tickerArr.forEach((key, i) => (pairs[key] = namesArr[i]));
+
+	var keys = ["foo", "bar", "baz"];
+	var values = [11, 22, 33];
+
+	var result = {};
+	keys.forEach((key, i) => (result[key] = values[i]));
+
+	return { tickerNamePairs: pairs };
+}
+
