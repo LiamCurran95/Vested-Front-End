@@ -1,6 +1,6 @@
 import * as api from "./api"
 
-export default async function generatePortfolio (env, soc, gov, user) {
+export async function generatePortfolio (env, soc, gov, user) {
 
       const {username, portfolio1, portfolio2} = user
       console.log(user)
