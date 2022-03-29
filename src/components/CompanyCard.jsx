@@ -22,7 +22,6 @@ export default function CompanyCard() {
   if (isLoading) return <p>Loading...</p>;
   return (<main className="company-card">
     <section className="company-info">
-      <p>extra info (pls remove)</p>
     <img src={companyData.image.contentUrl}/>
     <section className="company-info-text">
       <h2>{company}</h2>

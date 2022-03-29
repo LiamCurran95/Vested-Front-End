@@ -116,6 +116,7 @@ export function postUser(user) {
 }
 
 export function getEsgData() {
+
     return vestedApi.get('/ESG')
     .then(({data}) => {
         return data.result
@@ -169,19 +170,22 @@ export function updatePortfolioOfUser(tickerArr, username, portfolio) {
 }
 
 export function updateUserFormAnswers(user, answers, env, soc, gov) {
+  return vestedApi.patch(`/users/${user}/${answers}`, {
+    formResponses: {
+      environmentalRating: env,
+      socialRating: soc,
+      governanceRating: gov,
+    },
+  });
+}
 
-    return vestedApi.patch(`/users/${user}/${answers}`, {
-        formResponses: {
-            "environmentalRating": env,
-            "socialRating": soc,
-            "governanceRating": gov
-        }
-    })
-    .then(({data}) => {
-        return data
+export function fetchUser(username) {
+  return vestedApi
+    .get(`/users/${username}`)
+    .then(({ data }) => {
+      return data;
     })
     .catch((err) => {
       console.dir(err);
-      throw new Error(err.response.data.msg);
     });
 }
