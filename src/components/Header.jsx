@@ -1,6 +1,14 @@
+import { UserContext } from "../context/userContext";
+import { useContext, useState } from "react"
+
 export default function Header(){
+    const { loggedInUser } = useContext(UserContext)
 return (
     <header>
+        <span>
+                {loggedInUser.username}
+                <img className="nav-img-avatar" src={loggedInUser.avatarUrl} alt="logged in user" />
+            </span>
         <div className="header-buttons">
             <button>Theme : Light</button>
             <button>Log In</button>
