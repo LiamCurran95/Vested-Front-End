@@ -10,11 +10,7 @@ import * as api from "../api"
 import ReplaceCompany from "./ReplaceCompany"
 
 
-import FormStockList from './FormStocklist';
-
-
 export default function Form() {
-  // handle submit and post to API
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
   const [portfolioResults, setPortfolioResults] = useState([]);
   const [envValue, setEnvValue] = useState(3);
