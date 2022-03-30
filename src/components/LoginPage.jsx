@@ -30,6 +30,9 @@ export default function LoginPage(){
         return (
         <main className="log-in">
             <div className="log-in-container">
+
+                <h3>Log in to generate, view, and monitor your portfolio</h3>
+
                 <form className="log-in-form"
                     onSubmit={(e) => {
                             e.preventDefault()
@@ -71,39 +74,44 @@ export default function LoginPage(){
                         }
                     }
                 >
-                    <label>Email Address</label>
+                    <div className="submit-input">
                     <input type="text"
                     style={ validEmail ? null : { backgroundColor: "red" }}
-                    placeholder={ validEmail === true ? "Enter Email here..." : "Email Not Valid"}
+                    placeholder={ validEmail === true ? "EMAIL ADDRESS" : "Email Not Valid"}
                     value={emailInputted}
                     onChange={
                         (e) => {
                             setEmailInputted(e.target.value)
                         }
                     }></input>
+                    <button>log in</button>
+                    </div>
+
                 </form>
+
                 <div className="example-text">
-                    <h2>Feel free to log in with this example user email if you would like - <br></br>jessjelly@yahoo.com</h2>
+                    <h4>log in as jess: jessjelly@yahoo.com</h4>
                 </div>
+
             </div>
+
             <div className="disclaimer-text">
-                <h4>Disclaimer - We will not share any of your personal information</h4>
+                <h5>We do not share any of your personal information</h5>
             </div>
         </main>
     )
     } else {
             return (
-                <main>
+                <main className="log-in">
                     <div className="logging-in-container">
                         <h2>{welcomeMessage}</h2>
                         {newUser ? <p>Please take the time to create your first portfolio with us</p> :
-                                    <p>Click to enter your profile and see your portfolios</p>}
-                        {newUser ? <Link to="/form" style={{ textDecoration: "none" }}>Let's create!</Link> :
-                                    <Link to="/profile" style={{ textDecoration: "none" }}>Let's check!</Link>}
+                                    <p>Have a look at your portfolios on your profile page</p>}
+                        {newUser ? <Link to="/form" style={{ textDecoration: "none" }} className="link">create a portfolio</Link> :
+                                    <Link to="/profile" style={{ textDecoration: "none" }} className="link">see portfolios</Link>}
                     </div>
-                    <div className="disclaimer-text">
-                        <h4>Disclaimer - We will not share any of your personal information</h4>
-                    </div>
+                        
+                        <h5>We will not share any of your personal information</h5>
                 </main>
             )
         }

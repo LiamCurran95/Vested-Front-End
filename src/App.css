@@ -29,15 +29,22 @@ html {
   color: #398cc2;
 }
 
-.dark cite {
+.dark .cite,
+.dark .text-link {
   color: #66d7f7;
 }
 
 .dark button,
 .dark .drop-content #show,
-.dark .form Input {
+.dark .form Input,
+.dark .submit-input input,
+.dark .link {
   border: 2px solid #398cc2;
   background-color: #141a22;
+  color: #66d7f7;
+}
+
+.dark .nav-user {
   color: #66d7f7;
 }
 
@@ -49,8 +56,14 @@ html {
 
 .dark button:hover,
 .dark button:focus,
-.dark .drop-content #show {
+.dark .drop-content #show,
+.dark .link {
   outline: solid #398cc2;
+}
+
+.dark main.log-in .log-in-container,
+.dark main.welcome-page .demo-list ul li img {
+  background: #20262eaf;
 }
 
 /* Light Mode */
@@ -66,13 +79,16 @@ html {
 
 .light h2,
 .light h3,
-.light h4 {
+.light h4,
+.light .nav-user {
   color: #466d1d;
 }
 
 .light button,
 .light .drop-content #show,
-.light .form Input {
+.light .form Input,
+.light .submit-input input,
+.light .link {
   border: 2px solid #466d1d;
   background-color: #eeeec3;
   color: #466d1d;
@@ -80,7 +96,8 @@ html {
 
 .light button:hover,
 .light button:focus,
-.light .drop-content #show {
+.light .drop-content #show,
+.light .link {
   outline: solid #74b72e;
 }
 
@@ -90,10 +107,21 @@ html {
   outline-offset: 5px;
 }
 
+.light main.log-in .log-in-container,
+.light main.welcome-page .demo-list ul li img {
+  background: #e7e7d3;
+}
+
+.light .cite,
+.light .text-link {
+  color: #74b72e;
+}
+
 /* General Elements */
 
 button,
-.drop-content #show {
+.drop-content #show,
+.link {
   text-decoration: none;
   font-weight: 700;
   padding: 5px;
@@ -102,7 +130,8 @@ button,
 
 button:hover,
 button:focus,
-.drop-content #show {
+.drop-content #show,
+.link {
   outline-offset: 5px;
 }
 
@@ -184,50 +213,29 @@ main.landing-page .landing-banner .button-container button {
 
 /* Navigation */
 
-/* section.nav-container {
-  width: 100vw;
-  display: flex;
-  justify-content: space-evenly;
-  background: rgb(146, 127, 197);
-}  */
-
-/* section.nav-container h2 {
-  text-decoration: none;
-  position: relative; 
-  color: rgb(83, 65, 133);
-} */
-
-/* section.nav-container h2::after {
-  content: "";
-  position: absolute;
-  top: 90%;
-  bottom: 0;
-  left: 0;
-  right: 90%;
-  background: rgb(83, 65, 133);
-  border-radius: 50px;
-  transition: all 0.5s ease;
-}
-
-section.nav-container h2:hover::after {
-  content: "";
-  position: absolute;
-  top: 90%;
-  bottom: 0;
-  left: 0;
-  right: 0%;
-}
-*/
 .right-nav {
   display: flex;
   flex-direction: row;
   justify-content: right;
   align-items: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .right-nav button,
 .nav-user {
   margin-bottom: 10px;
+}
+
+.left-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .nav-user {
@@ -277,11 +285,13 @@ section.nav-container h2:hover::after {
   margin-bottom: 20px;
 }
 
-#hide {
+#hide,
+.hide {
   display: none;
 }
 
-#show {
+#show,
+.show {
   display: block;
 }
 
@@ -341,6 +351,7 @@ header .header-text {
 } */
 
 /* Welcome Page */
+
 main.welcome-page {
   /* background: rgb(169, 169, 236);
   color: rgb(35, 35, 68); */
@@ -348,10 +359,23 @@ main.welcome-page {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 1em;
 }
 
-main.welcome-page h1 {
-  padding: 3rem;
+main.welcome-page h1,
+main.welcome-page h2,
+.create-profile-container h3 {
+  text-transform: uppercase;
+}
+
+main.welcome-page h2,
+.welcome-page p {
+  font-style: italic;
+}
+
+.welcome-page p {
+  line-height: 1rem;
+  letter-spacing: 0.125rem;
 }
 
 main.welcome-page .create-profile-container {
@@ -359,25 +383,14 @@ main.welcome-page .create-profile-container {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 2rem;
 }
-
-main.welcome-page .create-profile-container h3 {
-  font-size: 2rem;
-}
-
-/* main.welcome-page .create-profile-container button {
-  font-size: 2rem;
-  border-radius: 10px;
-  padding: 1rem;
-} */
 
 main.welcome-page .demo-list ul li {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  width: 100vw;
-  margin: 2vh 0;
+  justify-content: space-around;
+  gap: 20px;
+  margin-bottom: 1em;
 }
 
 main.welcome-page .demo-list ul li img {
@@ -392,10 +405,11 @@ main.welcome-page .demo-list ul li img:hover {
   transform: scale(1.25);
 }
 
-main.welcome-page .demo-list ul li p {
+main.welcome-page .demo-list ul li p,
+main.welcome-page .demo-list ul li h2 {
   width: 50vw;
-  text-align: center;
-  font-size: 1.5rem;
+  text-align: right;
+  margin-right: 10px;
 }
 
 /* Log In Page */
@@ -408,7 +422,21 @@ main.log-in {
   /* color: rgb(35, 35, 68); */
 }
 
-main.log-in .log-in-container {
+.log-in h3,
+.logging-in-container h2 {
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.log-in h4,
+.log-in h5,
+.logging-in-container h5 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+main.log-in .log-in-container,
+.logging-in-container {
   box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
@@ -422,13 +450,14 @@ main.log-in .log-in-container {
   color: rgb(221, 209, 241); */
 }
 
-main.log-in .log-in-container form {
-  margin: 2rem;
+.submit-input {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
-main.log-in .log-in-container form label {
-  margin: 1rem;
-  font-size: 1.5rem;
+main.log-in .log-in-container form {
+  margin: 2rem;
 }
 
 main.log-in .log-in-container form input {
@@ -584,17 +613,21 @@ footer {
 .info-page {
   display: flex;
   flex-direction: column;
-  margin-left: 2em;
-  margin-right: 2em;
+  align-items: center;
 }
 
-.info-esg-list dl {
-  margin-bottom: 1em;
-  margin-top: 1em;
+.info-esg-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .info-illustration {
   max-width: 300px;
+}
+
+.info-page section h1 {
+  font-size: 4rem;
 }
 
 .info-page h2,
@@ -604,10 +637,21 @@ footer {
   font-style: italic;
 }
 
+.info-page .cite {
+  text-align: right;
+}
+
 .info-page section {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 30px;
+}
+
+.info-page dl {
+  border: red solid;
+  line-height: 1.25rem;
+  font-size: 1rem;
 }
 
 /* Company Info Page */

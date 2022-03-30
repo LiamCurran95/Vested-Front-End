@@ -4,35 +4,44 @@ import {Link} from "react-router-dom"
 export default function WelcomePage(){
     return (
         <main className="welcome-page">
-            <h1>Welcome to our app, here we would like to help you understand how best to use it...</h1>
+            <h1>Welcome to Vested</h1>
+            <h2> Here's what we do</h2>
             <div className="demo-list">
                 <ul>
                     <li>
                         <img url=""></img>
-                        <p>Fill in the questionnaire and we’ll generate a portfolio for you based on this; which you can choose to share with others 
-                            or keep private. Create multiple portfolios with interests weighted in different areas.</p>
+                        <section>
+                        <h2> ESG-Weighted portfolio </h2>
+                        <p>Fill in the questionnaire and we’ll use your answers to generate five sample companies to add to your portfolio. You can create multiple portfolios with interests weighted in different  <Link to="/infopage" style={{ textDecoration: "none" }} className="text-link">ESG</Link> criteria.</p>
+                        </section>
                     </li>
                     <li>
                         <img url=""></img>
-                        <p>Find out more information about companies in your suggested portfolios and check out the latest news stories related to them.</p>
+                    <section>
+                        <h2> Company information </h2>
+                        <p>Find out more information about each company in your portfolio(s) and check out the latest news stories related to them. <br></br>
+                        You can view a company page for each individual comany, as well as a dedicated news feed with new articles about companies in your portfolio.</p>
+                        </section>
                     </li>
                     <li>
                         <img url=""></img>
+                    <section>
+                        <h2> Social interaction</h2>
                         <p>See other users’ public portfolios, comment and vote on your favourites, and even make comparisons with your own.</p>
+                    </section>
                     </li>
                     <li>
                         <img url=""></img>
-                        <p>Customise your profile, visualise the data in different ways, and earn badges as you track your portfolio over time.</p>
-                    </li>
-                    <li>
-                        <img url=""></img>
-                        <p>Engage with our partnered startups who have interests in the same issues you do. </p>
+                        <section>
+                        <h2> Portfolio monitoring</h2>
+                        <p>Track your portfolios over time, and compare their performance to the S&P 500</p>
+                        </section>
                     </li>
                 </ul>
             </div>
             <div className="create-profile-container">
                 <h3>Ready to create your profile?</h3>
-                <button><Link to="/login" style={{textDecoration: "none", color: "purple"}}>Let's go!</Link></button>
+                <button><Link to="/login" style={{textDecoration: "none"}}>Let's go!</Link></button>
             </div>
         </main>
     )

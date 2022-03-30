@@ -8,13 +8,6 @@ export default function Header() {
 	const {toggle, toggleFunction } = useContext(ThemeContext)
 	return (
 		<header className={toggle? "dark" : "light"}>
-			<div className="header-buttons">
-				<button>
-					<Link to="/login" style={{ textDecoration: "none" }}>
-						Log In
-					</Link>
-				</button>
-			</div> */}
 				<h1>VE$TED</h1>
 		</header>
 	);

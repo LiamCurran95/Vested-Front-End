@@ -11,6 +11,8 @@ export default function Nav() {
     return (
         <>
            <nav className="nav-content-container">
+            
+            <section className="left-nav">
             <div className="dropdown">
                 <button className="drop-btn" onClick={() => { navClicked ? setNavClicked(false) : setNavClicked(true) }}>☰</button>
 
@@ -21,12 +23,19 @@ export default function Nav() {
                     <Link to="/infopage" style={{ textDecoration: "none" }} id={navClicked ? "show" : "hide"} onClick={() => { setNavClicked(false) }}>What is ESG?</Link>
                     <Link to="/form" style={{ textDecoration: "none" }} id={navClicked ? "show" : "hide"} onClick={() => { setNavClicked(false) }}>New Portfolio</Link>
                 </section>
-            </div>
+                </div>
+                <button onClick={toggleFunction}> {toggle? " ☼ " : " ☾ " } </button>
+            </section>
+          
             <section className="right-nav">
-            <button onClick={toggleFunction}> {toggle? " ☼ " : " ☾ " } </button>
+			<button className={`${loggedInUser? "show" : "hide"}`}>
+					<Link to="/login" style={{ textDecoration: "none" }}>
+						Log In
+					</Link>
+			</button>
             <span className="nav-user">
                 {loggedInUser? loggedInUser.username : "No Logged In User"}
-                <img className="nav-img-avatar" src={loggedInUser ? loggedInUser.avatarUrl : ""} alt="Please Log In" />
+                <img className="nav-img-avatar" src={loggedInUser ? loggedInUser.avatarUrl : ""} alt="user-avi" />
             </span>	
             </section>
         </nav>
