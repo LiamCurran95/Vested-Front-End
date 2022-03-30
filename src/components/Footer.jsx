@@ -1,7 +1,7 @@
 export default function Footer(){
     return (
             <footer>
-                <h3>This is a showcase app! Vested does not provide genuine financial advice and should not be treated as such.</h3>
+                <h5>Dislaimer: Vested is a showcase simulation app. Vested does not provide genuine financial advice and should only be used as an exploratory tool.</h5>
             </footer>
         )
     }

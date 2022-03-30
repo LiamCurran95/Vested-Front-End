@@ -13,32 +13,34 @@ import InfoPage from "./components/InfoPage";
 import CompanyCard from "./components/CompanyCard";
 import OtherUserProfile from "./components/OtherUserProfile";
 import { UserContext } from "./context/userContext";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ThemeContext } from "./context/themeContext";
 
 function App() {
-	
-	return (
-		<BrowserRouter>
-			<div className="App">
-				<Header />
-				<Nav />
-				<Routes>
-					<Route path="/" element={<LandingPage />} />
-					<Route path="/welcome" element={<WelcomePage />} />
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/form" element={<Form />} />
-					<Route path="/profile" element={<UserProfile />} />
-					<Route path="/newsfeed" element={<NewsFeed />} />
-					<Route path="/infopage" element={<InfoPage />} />
-					<Route path="/companyinfo/:company" element={<CompanyCard />} />
-					<Route path="/users/:username" element={<OtherUserProfile />} />
-					<Route path="*" element={<ErrorPage />} />
-				</Routes>
-				<Footer />
-			</div>
-		</BrowserRouter>
-	);
+  const { toggle } = useContext(ThemeContext);
+
+  return (
+    <BrowserRouter>
+      <div className={`App ${toggle ? "dark" : "light"}`}>
+        <Nav />
+        <Header />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/newsfeed" element={<NewsFeed />} />
+          <Route path="/infopage" element={<InfoPage />} />
+          <Route path="/companyinfo/:company" element={<CompanyCard />} />
+          <Route path="/users/:username" element={<OtherUserProfile />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
