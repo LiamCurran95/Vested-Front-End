@@ -81,29 +81,23 @@ export async function generateChartData() {
 	return polygonData;
 }
 
-export async function stockNames(tickers) {
+export async function getStockNames(tickers) {
 	const portfolioTickers = tickers;
 	const esgData = await api.getEsgData();
 	const x = esgData.filter((item) => {
 		return portfolioTickers.includes(item.ticker);
 	});
 
-	let tickerArr = [];
-	let namesArr = [];
+	const tickerNameFilter = (param) => {
+		let tickerArr = [];
+		let namesArr = [];
+		param.forEach((stock) => {
+			tickerArr.push(stock.ticker);
+			namesArr.push(stock.name);
+		});
+		return namesArr;
+	};
 
-	const tickerNameFilter = x.forEach((stock) => {
-		tickerArr.push(stock.ticker);
-		namesArr.push(stock.name);
-	});
-
-	let pairs = {};
-	tickerArr.forEach((key, i) => (pairs[key] = namesArr[i]));
-
-	var keys = ["foo", "bar", "baz"];
-	var values = [11, 22, 33];
-
-	var result = {};
-	keys.forEach((key, i) => (result[key] = values[i]));
-
-	return { tickerNamePairs: pairs };
+	const names = tickerNameFilter(x);
+	return names;
 }
