@@ -28,8 +28,8 @@ export default function Nav() {
             </section>
           
             <section className="right-nav">
-			<button className={`${loggedInUser? "show" : "hide"}`}>
-					<Link to="/login" style={{ textDecoration: "none" }}>
+			<button id={`${loggedInUser.username !== "Guest"? "hide" : "show"}`}>
+					<Link to="/login" style={{ textDecoration: "none" }} className="log-in-link">
 						Log In
 					</Link>
 			</button>
