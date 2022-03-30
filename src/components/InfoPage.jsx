@@ -1,26 +1,37 @@
 export default function InfoPage(){
     return (
-    <>
-        <h2>ESG: Environmental, Social, and Governance Criteria</h2>
+    <main className="info-page">
+
+        <h1>ESG</h1>
+        <h2>Environmental, Social, and Governance Criteria</h2>
 
         <img className="info-illustration" src="https://wealthofgeeks.com/wp-content/uploads/2020/09/ESGInvesting.png" alt="illustration of woman sitting on stack of coins looking at her computer; ESG superimposed over upwards trending graph and clouds" />
+        <br></br>
         <cite><a href="https://wealthofgeeks.com/wp-content/uploads/2020/09/ESGInvesting.png">Source</a></cite>
         
         <ul className="info-esg-list">
-            <h3>E</h3>
-            <dl>E, environmental criteria, includes the energy your company takes in and the waste it discharges, the resources it needs, and the consequences for living beings as a result. Not least, E encompasses carbon emissions and climate change. Every company uses energy and resources; every company affects, and is affected by, the environment.</dl>
-            <h3>S</h3>
-            <dl>S, social criteria, addresses the relationships your company has and the reputation it fosters with people and institutions in the communities where you do business. S includes labor relations and diversity and inclusion. Every company operates within a broader, diverse society.</dl>
-            <h3>G</h3>
-            <dl>G, governance, is the internal system of practices, controls, and procedures your company adopts in order to govern itself, make effective decisions, comply with the law, and meet the needs of external stakeholders. Every company, which is itself a legal creation, requires governance.</dl>
-            <cite> <a href="https://www.mckinsey.com/business-functions/strategy-and-corporate-finance/our-insights/five-ways-that-esg-creates-value">McKinsey & Company</a></cite>
-        </ul>
-        
-        <p>
-            Vested uses ESG scores as a criteria to evaluate the relative compatibility of a company with the values that each user selects as important for them when generating a portfolio. We sort through publicly listed companies to suggest a list of potential stocks that have ESG scores that are best matched to the users selections, and allow the user to 'monitor' the performance of those stocks over time in a simulated model 
-        </p>
 
-        <ul> 
+            <section>
+            <h2>E</h2>
+            <dl>E, environmental criteria, includes the energy your company takes in and the waste it discharges, the resources it needs, and the consequences for living beings as a result. Not least, E encompasses carbon emissions and climate change. Every company uses energy and resources; every company affects, and is affected by, the environment.</dl>
+            </section>
+            
+            <section>
+            <h2>S</h2>
+            <dl>S, social criteria, addresses the relationships your company has and the reputation it fosters with people and institutions in the communities where you do business. S includes labor relations and diversity and inclusion. Every company operates within a broader, diverse society.</dl>
+            </section>
+
+            <section>
+            <h2>G</h2>
+            <dl>G, governance, is the internal system of practices, controls, and procedures your company adopts in order to govern itself, make effective decisions, comply with the law, and meet the needs of external stakeholders. Every company, which is itself a legal creation, requires governance.</dl>
+            </section>
+            
+            <cite> <a href="https://www.mckinsey.com/business-functions/strategy-and-corporate-finance/our-insights/five-ways-that-esg-creates-value">McKinsey & Company</a></cite>
+        
+        <dl>
+            Vested uses ESG scores as a criteria to evaluate the relative compatibility of a company with the values that each user selects as important for them when generating a portfolio. We sort through publicly listed companies to suggest a list of potential stocks that have ESG scores that are best matched to the users selections, and allow the user to 'monitor' the performance of those stocks over time in a simulated model 
+        </dl>
+
             <dl>
                 Environmental, social, and governance (ESG) criteria are an increasingly popular way for investors to evaluate companies in which they might want to invest. Many mutual funds, brokerage firms, and robo-advisors now offer products that employ ESG criteria.ESG criteria can also help investors avoid companies that might pose a greater financial risk due to their environmental or other practices. 
             </dl>
@@ -51,5 +62,5 @@ export default function InfoPage(){
 
 
 
-    </>)
+    </main>)
     }

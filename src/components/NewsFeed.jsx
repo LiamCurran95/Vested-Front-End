@@ -23,14 +23,15 @@ export default function NewsFeed(){
     },[isLoading])
     return isLoading ? <p>News Feed is loading...</p> : (
         <main className="news-feed">
+            <h4>NEWS ABOUT COMPANIES IN YOUR PORTFOLIOS</h4>
             <ul>
                 {articles.map(article => {
                     return (
-                        <li key={article.title}>
-                            <img src={article.image_url} alt={article.title}></img>
+                        <li key={article.title} className="news-feed-card">
                             <h4>{article.title} - Source: {article.source}</h4>
+                            <img src={article.image_url} alt={article.title}></img>
                             <p>{article.description}</p>
-                            <a href={article.url} target="_blank" rel="noreferrer">Check out more here</a>
+                            <a href={article.url} target="_blank" rel="noreferrer">see more</a>
                             <p>Posted: {article.published_at}</p>
                         </li>
                     )

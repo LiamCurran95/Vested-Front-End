@@ -10,8 +10,6 @@ import * as api from "../api"
 import ReplaceCompany from "./ReplaceCompany"
 
 
-import FormStockList from './FormStocklist';
-
 
 export default function Form() {
   // handle submit and post to API
@@ -98,9 +96,9 @@ export default function Form() {
 
   if(submitted === false) {
     return (
-    <>
+    <main className="form">
       <h3>Answer some short questions about ESG criteria and let Vested generate a suggested portfolio.</h3>
-      <h4>We combine your personal choices on areas that are most important to you with the current stock market in order to decide the best
+      <h4>We combine your personal ranked choices about areas that are most important to you with the current stock market in order to decide the best
         companies for your you to invest in.
       </h4>
       <h4>How strongly would you rate your interest in the following issues (0 is of less importance, 5 is of most importance)</h4>
@@ -190,7 +188,7 @@ export default function Form() {
         <button type="submit"> Generate portfolio </button>
 
       </form>
-    </>
+    </main>
   );
   } else {
     return (
