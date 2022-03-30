@@ -30,12 +30,6 @@ export function getNewsFeed(companies) {
 }
 
 export function getTodaysStockData() {
-	// let date = new Date();
-	// let dd = String(date.getDate()).padStart(2, '0');
-	// let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
-	// let yyyy = date.getFullYear();
-
-	// const urlDate = yyyy + '-' + mm + '-' + dd;
 	const urlDate = "2022-03-25";
 
 	return axios
@@ -396,6 +390,21 @@ export function fetchUser(username) {
 		.get(`/users/${username}`)
 		.then(({ data }) => {
 			return data;
+		})
+		.catch((err) => {
+			console.dir(err);
+		});
+}
+
+export function fetchListOfUsernames() {
+	return vestedApi
+		.get(`/users`)
+		.then(({ data: { result } }) => {
+			let usernameList = [];
+			result.forEach((user) => {
+				usernameList.push(user.username);
+			});
+			return usernameList;
 		})
 		.catch((err) => {
 			console.dir(err);
