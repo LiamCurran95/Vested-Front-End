@@ -39,11 +39,7 @@ export default function LoginPage(){
                                 return api.findUser(emailInputted.split("@")[0])
                                 .then((response) => {
                                     console.log(response)
-                                    if(response !== null && response !== undefined){
-                                        console.log("found user")
-                                        setLoggedInUser(response)
-                                        setNewUser(false)
-                                    } else {
+                                    if(response === null || response === undefined){
                                         console.log("didnt find user")
                                         setLoggedInUser({
                                                 username: emailInputted.split("@")[0],
@@ -65,6 +61,10 @@ export default function LoginPage(){
                                                 theme: "light"
                                         })
                                         setNewUser(true)
+                                    } else {
+                                        console.log("found user")
+                                        setLoggedInUser(response)
+                                        setNewUser(false)
                                     }
                                 })
                             } else {
