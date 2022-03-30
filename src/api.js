@@ -370,7 +370,7 @@ export function updatePortfolioOfUser(tickerArr, username, portfolio) {
 
 export function updateUserFormAnswers(user, answers, env, soc, gov) {
 	return vestedApi
-		.patch(`/${user}/${answers}`, {
+		.patch(`/users/${user}/${answers}`, {
 			formResponses: {
 				environmentalRating: env,
 				socialRating: soc,
