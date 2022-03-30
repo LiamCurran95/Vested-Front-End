@@ -1,10 +1,12 @@
 import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import Collapse from "./Collapse";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { Link, useParams } from "react-router-dom";
 import { Chart } from "./Chart";
+import { getStockNames } from "../util-functions";
 
 export default function UserProfile() {
 	const { loggedInUser } = useContext(UserContext);
@@ -17,9 +19,13 @@ export default function UserProfile() {
 		{ portfolio2: loggedInUser.portfolio2.tickers },
 		{ portfolio3: loggedInUser.portfolio3.tickers },
 	];
+	const [stockNames, setStockNames] = useState([]);
 
 	useEffect(() => {
 		setIsLoading(true);
+		getStockNames(shownPortfolio).then((result) => {
+			setStockNames(result);
+		});
 		setIsLoading(false);
 	}, [shownPortfolio]);
 
@@ -39,44 +45,73 @@ export default function UserProfile() {
 					<h2>{loggedInUser.username}</h2>
 				</div>
 			</section>
-			<Stack spacing={2} direction="row">
-				<Button
-					onClick={() => {
-						changePortfolioView(userPortfolios[0].portfolio1);
-					}}
-					variant="outlined"
-				>
-					Show Portfolio 1
-				</Button>
-				<Button
-					onClick={() => {
-						changePortfolioView(userPortfolios[1].portfolio2);
-					}}
-					variant="outlined"
-				>
-					Show Portfolio 2
-				</Button>
-				<Button
-					onClick={() => {
-						changePortfolioView(userPortfolios[2].portfolio3);
-					}}
-					variant="outlined"
-				>
-					Show Portfolio 3
-				</Button>
-			</Stack>
-			<Chart tickers={shownPortfolio} />
-			<>
-				<section className="user-portfolio-list">
-					{shownPortfolio.map((portfolio, index) => {
-						return (
-							<li key={index}>
-								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
-							</li>
-						);
-					})}
+
+			<section className="profile-introduction">
+				<h2>See your portfolios</h2>
+				<h4>
+					Here are the portfolios that Vested has generated for you based on the
+					ESG prefences you specified when you added the portfolio
+				</h4>
+				<h4> click to explore stock performance in each portfolio over time</h4>
+			</section>
+
+			<Collapse>
+				<Stack spacing={2} direction="row">
+					<Button
+						onClick={() => {
+							changePortfolioView(userPortfolios[0].portfolio1);
+						}}
+						variant="outlined"
+					>
+						Show Portfolio 1
+					</Button>
+					<Button
+						onClick={() => {
+							changePortfolioView(userPortfolios[1].portfolio2);
+						}}
+						variant="outlined"
+					>
+						Show Portfolio 2
+					</Button>
+					<Button
+						onClick={() => {
+							changePortfolioView(userPortfolios[2].portfolio3);
+						}}
+						variant="outlined"
+					>
+						Show Portfolio 3
+					</Button>
+				</Stack>
+				<section className="profile-data-vis">
+					<Chart tickers={shownPortfolio} />
+
+					<>
+						<section className="user-portfolio-list">
+							<h4>Companies in Portfolio </h4>
+							<h5>{stockNames[0]}</h5>
+							<Link to={`/companyinfo/${shownPortfolio[0]}`} className="link">
+								{shownPortfolio[0]}
+							</Link>
+							<h5>{stockNames[1]}</h5>
+							<Link to={`/companyinfo/${shownPortfolio[1]}`} className="link">
+								{shownPortfolio[1]}
+							</Link>
+							<h5>{stockNames[2]}</h5>
+							<Link to={`/companyinfo/${shownPortfolio[2]}`} className="link">
+								{shownPortfolio[2]}
+							</Link>
+							<h5>{stockNames[3]}</h5>
+							<Link to={`/companyinfo/${shownPortfolio[3]}`} className="link">
+								{shownPortfolio[3]}
+							</Link>
+							<h5>{stockNames[4]}</h5>
+							<Link to={`/companyinfo/${shownPortfolio[4]}`} className="link">
+								{shownPortfolio[4]}
+							</Link>
+						</section>
+					</>
 				</section>
-			</>
+			</Collapse>
 		</main>
 	);
 }
