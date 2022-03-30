@@ -26,7 +26,6 @@ export default function UserProfile() {
 
 	useEffect(() => {
 		const test = stockNames(shownPortfolio);
-		console.log(test);
 		setIsLoading(true);
 		setIsLoading(false);
 	}, [shownPortfolio]);

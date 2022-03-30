@@ -33,12 +33,10 @@ export default function LoginPage(){
                 <form className="log-in-form"
                     onSubmit={(e) => {
                             e.preventDefault()
-                            console.log(emailInputted)
                             if(emailInputted.match(emailRegex)){
                                 setValidEmail(true)
                                 return api.findUser(emailInputted.split("@")[0])
                                 .then((response) => {
-                                    console.log(response)
                                     if(response === null || response === undefined){
                                         console.log("didnt find user")
                                         setLoggedInUser({
