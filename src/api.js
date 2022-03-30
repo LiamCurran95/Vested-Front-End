@@ -231,6 +231,7 @@ export function getPolygonData() {
 	return vestedApi
 		.get("/polygon")
 		.then((data) => {
+			data;
 			const result = data.data;
 			return result;
 		})
@@ -364,7 +365,6 @@ export function updatePortfolioOfUser(tickerArr, username, portfolio) {
 			tickers: tickerArr,
 		})
 		.then(({ data: { result } }) => {
-			console.log(result);
 			return result;
 		})
 		.catch((err) => {
@@ -383,7 +383,6 @@ export function updateUserFormAnswers(user, answers, env, soc, gov) {
 			},
 		})
 		.then(({ data: { result } }) => {
-			console.log(result);
 			return result;
 		})
 		.catch((err) => {

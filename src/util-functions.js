@@ -76,6 +76,11 @@ export async function generatePortfolio(env, soc, gov, user) {
 	return portfolioCompanies;
 }
 
+export async function generateChartData() {
+	const polygonData = await api.getPolygonData();
+	return polygonData;
+}
+
 export async function stockNames(tickers) {
 	const portfolioTickers = tickers;
 	const esgData = await api.getEsgData();
