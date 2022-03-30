@@ -28,7 +28,6 @@ export default function Form() {
     if(formSubmitted === true) {
       return generatePortfolio(envValue, socValue, govValue, loggedInUser)
       .then(result => {
-        console.log(result)
         setPortfolioResults(result)
         setSubmitted(true)
       })
@@ -39,8 +38,6 @@ export default function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('posted');
-    console.log(envValue, socValue, govValue);
     setFormSubmitted(true)
   }
 
@@ -218,7 +215,6 @@ export default function Form() {
           .then((result) => {
             setLoggedInUser(result)
             setReady(true)
-            console.log(result)
           })
         }}
         >{ ready ? "Go To Profile" : "Confirm Choices" }</Link>
