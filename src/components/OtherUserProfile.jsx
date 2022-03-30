@@ -1,50 +1,84 @@
-import UserBanner from "./UserBanner";
-import UserPortfolioView from "./UserPortfolioView";
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../context/userContext";
+import * as React from "react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import * as api from "../api";
+import { Chart } from "./Chart";
+import { fetchUser } from "../api";
+import { getUserData } from "../util-functions";
 
-export default function UserProfile() {
+export default function OtherUserProfile() {
 	let { username } = useParams();
-	const [userData, setUserData] = useState();
-	const [userPortfolio, setUserPortfolio] = useState();
 	const [isLoading, setIsLoading] = useState(true);
+	const [shownPortfolio, setShownPortfolio] = useState([]);
+	const [userData, setUserData] = useState([]);
 
 	useEffect(() => {
 		setIsLoading(true);
-		api
-			.fetchUser(username)
-			.then((response) => {
-				console.log("userData: ", response);
-				setUserData(response.result);
-				setIsLoading(false);
-			})
-			.catch((err) => console.dir(err));
-	}, [username]);
+		if (shownPortfolio.length === 0) {
+			getUserData(username).then((result) => {
+				setUserData(result);
+				setShownPortfolio(result.portfolio1.tickers);
+			});
+			setIsLoading(false);
+		}
+		setIsLoading(false);
+	}, [shownPortfolio]);
 
-	return isLoading ? (
-		<p>Profile is loading</p>
-	) : (
+	const changePortfolioView = (param) => {
+		setIsLoading(true);
+		setShownPortfolio(param);
+		setIsLoading(false);
+	};
+
+	if (userData.length !== 0 && isLoading === true) return <p>loading...</p>;
+	console.log(userData);
+	return (
 		<main className="user-profile">
 			<section className="user-banner">
 				<img src={userData.avatarUrl}></img>
 				<div className="profile-text-container">
 					<h2>{userData.username}</h2>
-					<ul>
-						<li>Achievement1</li>
-						<li>Achievement2</li>
-						<li>Achievement2</li>
-					</ul>
 				</div>
 			</section>
-			<section className="user-portfolio-list">
-				<li>
-					<p>{userData.portfolio1.tickers}</p>
-					<p>{userData.portfolio2.tickers}</p>
-					<p>{userData.portfolio3.tickers}</p>
-				</li>
-			</section>
+			<Stack spacing={2} direction="row">
+				<Button
+					onClick={() => {
+						changePortfolioView(userData.portfolio1);
+					}}
+					variant="outlined"
+				>
+					Show Portfolio 1
+				</Button>
+				<Button
+					onClick={() => {
+						changePortfolioView(userData.portfolio2);
+					}}
+					variant="outlined"
+				>
+					Show Portfolio 2
+				</Button>
+				<Button
+					onClick={() => {
+						changePortfolioView(userData.portfolio3);
+					}}
+					variant="outlined"
+				>
+					Show Portfolio 3
+				</Button>
+			</Stack>
+			<Chart tickers={shownPortfolio} />
+			<>
+				<section className="user-portfolio-list">
+					{shownPortfolio.map((portfolio, index) => {
+						return (
+							<li key={index}>
+								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
+							</li>
+						);
+					})}
+				</section>
+			</>
 		</main>
 	);
 }

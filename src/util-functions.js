@@ -107,3 +107,9 @@ export async function stockNames(tickers) {
 
 	return { tickerNamePairs: pairs };
 }
+
+export async function getUserData(username) {
+	const result = await api.fetchUser(username);
+	const userData = result.result;
+	return userData;
+}
