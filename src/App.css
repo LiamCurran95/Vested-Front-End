@@ -45,7 +45,8 @@ html {
   color: #66d7f7;
 }
 
-.dark .nav-user {
+.dark .nav-user,
+.dark .user-profile h2 {
   color: #66d7f7;
 }
 
@@ -74,7 +75,8 @@ html {
   color: #354230;
 }
 
-.light h1 {
+.light h1,
+.light .user-profile h2 {
   color: #74b72e;
 }
 
@@ -135,6 +137,10 @@ button:focus,
 .drop-content #show,
 .link {
   outline-offset: 5px;
+}
+
+.collapse {
+  margin: 1.5em;
 }
 
 ul {
@@ -523,7 +529,6 @@ main.user-profile section.user-banner img {
   width: 100;
   height: 100px;
   border-radius: 50%;
-  border: 1px solid white;
   object-fit: cover;
   margin: 1rem;
 }
@@ -547,15 +552,37 @@ main.user-profile section.user-banner .profile-text-container ul li {
   margin: 1rem;
 }
 
-main.user-profile section.user-portfolio-list {
-  display: grid;
-  grid-template-columns: auto auto auto;
+.profile-data-vis {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: left;
+}
+
+.user-portfolio-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.user-profile h2 {
+  text-transform: uppercase;
+  text-align: center;
+  font-style: italic;
+}
+
+.user-profile h4 {
+  text-align: center;
+}
+
+.user-portfolio-list {
+  text-transform: uppercase;
 }
 
 main.user-profile section.user-portfolio-list li {
-  margin: 5vh 15vw;
   list-style-type: none;
-  font-size: 1.5rem;
+  margin: 1em;
 }
 
 /* New Portfolio Form*/
