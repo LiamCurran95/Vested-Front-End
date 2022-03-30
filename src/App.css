@@ -19,6 +19,10 @@ html {
   color: #b4c0d4;
 }
 
+.dark .drop-content {
+  background: #141a22;
+}
+
 .dark h1 {
   color: #66d7f7;
 }
@@ -39,7 +43,8 @@ html {
 .dark .drop-content #show,
 .dark .form Input,
 .dark .submit-input input,
-.dark .link {
+.dark .link,
+.dark .search input {
   border: 2px solid #398cc2;
   background-color: #141a22;
   color: #66d7f7;
@@ -58,7 +63,8 @@ html {
 
 .dark button:hover,
 .dark button:focus,
-.dark .drop-content #show,
+.dark .drop-content #show:hover,
+.dark .drop-content #show:focus,
 .dark .link {
   outline: solid #398cc2;
 }
@@ -71,8 +77,12 @@ html {
 /* Light Mode */
 
 .light {
-  background-color: #eeeec3;
+  background-color: #f3f3e3;
   color: #354230;
+}
+
+.light .drop-content {
+  background: #f3f3e3;
 }
 
 .light h1,
@@ -92,15 +102,17 @@ html {
 .light .drop-content #show,
 .light .form Input,
 .light .submit-input input,
-.light .link {
+.light .link,
+.light .search input {
   border: 2px solid #466d1d;
-  background-color: #eeeec3;
+  background-color: #f3f3e3;
   color: #466d1d;
 }
 
 .light button:hover,
 .light button:focus,
-.light .drop-content #show,
+.light .drop-content #show:hover,
+.light .drop-content #show:focus,
 .light .link {
   outline: solid #74b72e;
 }
@@ -135,7 +147,7 @@ button,
 button:hover,
 button:focus,
 .drop-content #show,
-.link {
+.link:hover {
   outline-offset: 5px;
 }
 
@@ -173,7 +185,6 @@ main.landing-page .landing-banner h2 {
   font-size: 3rem;
   animation: fade-in 1s linear 1s forwards;
   opacity: 0;
-  letter-spacing: 0.25rem;
   text-transform: uppercase;
   margin: 0;
 }
@@ -185,30 +196,16 @@ main.landing-page .landing-banner p {
   width: 80vw;
   text-align: justify;
   line-height: 1rem;
-  letter-spacing: 0.125rem;
 }
 
 main.landing-page .landing-banner .button-container {
-  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin: 2rem;
+  gap: 1em;
   animation: fade-in 1s linear 5s forwards;
   opacity: 0;
 }
-
-/*
-main.landing-page .landing-banner .button-container button {
-  height: 5vh;
-  width: 10vw;
-  border-radius: 20px;
-  cursor: pointer;
-  color: rgb(35, 35, 68);
-  text-transform: uppercase;
-  font-weight: bolder;
-  background: rgb(216, 219, 231);
-} */
 
 @keyframes fade-in {
   0% {
@@ -220,6 +217,14 @@ main.landing-page .landing-banner .button-container button {
 }
 
 /* Navigation */
+
+.right-nav-search {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: flex-end;
+  gap: 10px;
+}
 
 .right-nav {
   display: flex;
@@ -368,7 +373,7 @@ main.welcome-page {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 1em;
+  margin: 1em;
 }
 
 main.welcome-page h1,
@@ -383,7 +388,6 @@ main.welcome-page h2 {
 
 .welcome-page p {
   line-height: 1rem;
-  letter-spacing: 0.125rem;
 }
 
 .create-profile-container {
@@ -400,9 +404,17 @@ main.welcome-page h2 {
   flex-direction: column;
 } */
 
+.demo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 main.welcome-page .demo-list ul li {
   display: flex;
   align-items: center;
+  flex-direction: row;
   justify-content: space-around;
   gap: 20px;
   margin-bottom: 1em;
@@ -423,7 +435,6 @@ main.welcome-page .demo-list ul li img:hover {
 main.welcome-page .demo-list ul li p,
 main.welcome-page .demo-list ul li h2 {
   width: 50vw;
-  text-align: right;
   margin-right: 10px;
 }
 
@@ -434,6 +445,7 @@ main.log-in {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 2em;
   /* color: rgb(35, 35, 68); */
 }
 
@@ -441,6 +453,7 @@ main.log-in {
 .logging-in-container h2 {
   text-transform: uppercase;
   font-style: italic;
+  text-align: center;
 }
 
 .log-in h4,
@@ -476,8 +489,6 @@ main.log-in .log-in-container form {
 }
 
 main.log-in .log-in-container form input {
-  width: 20vw;
-  height: 5vh;
   text-align: center;
   border-radius: 10px;
 }
@@ -509,6 +520,7 @@ main.user-profile {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 1.5em;
   /* background: linear-gradient(
     45deg,
     rgb(139, 128, 187),
@@ -539,8 +551,7 @@ main.user-profile section.user-banner .profile-text-container {
 }
 
 main.user-profile section.user-banner .profile-text-container h2 {
-  margin: 1rem 3rem;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 main.user-profile section.user-banner .profile-text-container ul {
@@ -552,9 +563,17 @@ main.user-profile section.user-banner .profile-text-container ul li {
   margin: 1rem;
 }
 
-.profile-data-vis {
+.portfolio-view-buttons {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: left;
+  gap: 10px;
+}
+
+.profile-data-vis {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: left;
 }
@@ -564,6 +583,7 @@ main.user-profile section.user-banner .profile-text-container ul li {
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
+  margin-bottom: 1em;
 }
 
 .user-profile h2 {
@@ -574,6 +594,7 @@ main.user-profile section.user-banner .profile-text-container ul li {
 
 .user-profile h4 {
   text-align: center;
+  text-transform: uppercase;
 }
 
 .user-portfolio-list {
@@ -589,15 +610,30 @@ main.user-profile section.user-portfolio-list li {
 
 .form {
   margin: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.form h3 {
+.form-confirm ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.form h3,
+.form-confirm h3 {
   text-transform: uppercase;
   text-align: center;
   font-style: italic;
 }
 
-.form h4 {
+.form h4,
+.form-confirm h4 {
   text-align: center;
 }
 
@@ -606,7 +642,11 @@ main.user-profile section.user-portfolio-list li {
 }
 
 .form button {
-  margin: 1em;
+  margin: 5.5em;
+}
+
+.form-confirm .link {
+  margin: 5.5em;
 }
 
 /* News Feed */
@@ -657,8 +697,9 @@ footer {
 .info-esg-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
   margin-right: 2em;
+  align-items: center;
 }
 
 .info-illustration {
@@ -669,16 +710,17 @@ footer {
   font-size: 4rem;
 }
 
-.info-page section dl {
-  height: 30vh;
+.info-page dl {
+  height: 40vh;
   width: 70vw;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
   transition: all 0.5s linear;
   border-radius: 20px;
   padding: 10px;
+  text-align: justify;
 }
 
-.info-page section dl:hover {
+.info-page dl:hover {
   transform: scale(1.1);
 }
 
@@ -701,32 +743,36 @@ footer {
 }
 
 .info-page dl {
-  line-height: 1.25rem;
   font-size: 1rem;
 }
 
 /* Company Info Page */
+
 main.company-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    45deg,
-    rgb(139, 128, 187),
-    rgb(125, 117, 197),
-    rgb(155, 128, 206)
-  );
+}
+
+.company-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: scale-down;
+  padding: 5px;
 }
 
 main.company-card section.company-info {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   margin: 1rem;
 }
 
 main.company-card h2 {
   font-size: 2rem;
-  color: rgb(62, 43, 114);
+  text-align: left;
 }
 
 main.company-card section.company-info-text {
@@ -734,8 +780,32 @@ main.company-card section.company-info-text {
   padding: 1rem;
 }
 
-main.company-card section.company-info-links {
+.company-info-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 30px;
+}
+
+/* main.company-card section.company-info-links {
   display: grid;
   grid-template-columns: auto auto auto;
   padding-top: 2rem;
+} */
+
+/* Media Queries */
+
+@media (min-width: 750px) {
+  main.user-profile section.user-banner .profile-text-container h2 {
+    margin: 1rem 3rem;
+    font-size: 3rem;
+  }
+
+  .profile-data-vis {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: left;
+  }
 }

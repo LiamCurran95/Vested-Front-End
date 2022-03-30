@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchListOfUsernames, getEsgData } from "../api";
 import { Link } from "react-router-dom";
 
+
 export default function SearchBar() {
 	const [users, setUsers] = useState([]);
 	const [companyNames, setCompanyNames] = useState([]);
@@ -30,9 +31,9 @@ export default function SearchBar() {
 
 	if (isLoading === true) return <p>loading...</p>;
 	return (
-		<div>
+		<div className="search">
 			<input
-				placeholder="search here"
+				placeholder="search"
 				onChange={(event) => {
 					event.preventDefault();
 					setQuery(event.target.value);

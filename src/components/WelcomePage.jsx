@@ -27,14 +27,14 @@ export default function WelcomePage(){
                         <img url=""></img>
                     <section>
                         <h2> Social interaction</h2>
-                        <p>See other users’ public portfolios, comment and vote on your favourites, and even make comparisons with your own.</p>
+                        <p>See other users’ public portfolios</p>
                     </section>
                     </li>
                     <li>
                         <img url=""></img>
                         <section>
                         <h2> Portfolio monitoring</h2>
-                        <p>Track your portfolios over time, and compare their performance to the S&P 500</p>
+                        <p>Track your portfolios over time</p>
                         </section>
                     </li>
                 </ul>
