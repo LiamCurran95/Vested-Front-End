@@ -9,10 +9,7 @@ import { Link } from "react-router-dom"
 import * as api from "../api"
 import ReplaceCompany from "./ReplaceCompany"
 
-
-
 export default function Form() {
-  // handle submit and post to API
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
   const [portfolioResults, setPortfolioResults] = useState([]);
   const [envValue, setEnvValue] = useState(3);
@@ -30,7 +27,6 @@ export default function Form() {
     if(formSubmitted === true) {
       return generatePortfolio(envValue, socValue, govValue, loggedInUser)
       .then(result => {
-        console.log(result)
         setPortfolioResults(result)
         setSubmitted(true)
       })
@@ -41,8 +37,6 @@ export default function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('posted');
-    console.log(envValue, socValue, govValue);
     setFormSubmitted(true)
   }
 
@@ -220,7 +214,6 @@ export default function Form() {
           .then((result) => {
             setLoggedInUser(result)
             setReady(true)
-            console.log(result)
           })
         }}
         >{ ready ? "Go To Profile" : "Confirm Choices" }</Link>

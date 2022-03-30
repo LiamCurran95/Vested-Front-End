@@ -176,7 +176,6 @@ export function findUser(username) {
 	return vestedApi
 		.get(`/users/${username}`)
 		.then(({ data: { result } }) => {
-			console.log(result);
 			return result;
 		})
 		.catch((err) => {
@@ -356,38 +355,37 @@ export function getPolygonData() {
 }
 
 export function updatePortfolioOfUser(tickerArr, username, portfolio) {
-
-    console.log(tickerArr)
-    console.log(portfolio)
-    console.log(username)
-    return vestedApi.patch(`/users/${username}/${portfolio}`, {
-        tickers: tickerArr
-    })
-    .then(({data: {result}}) => {
-        return result
-    })
-    .catch((err) => {
-      console.dir(err);
-      throw new Error(err.response.data.msg);
-    });
+	return vestedApi
+		.patch(`/${username}/${portfolio}`, {
+			tickers: tickerArr,
+		})
+		.then(({data: {result}}) => {
+            console.log(result)
+			return result;
+		})
+		.catch((err) => {
+			console.dir(err);
+			throw new Error(err.response.data.msg);
+		});
 }
 
 export function updateUserFormAnswers(user, answers, env, soc, gov) {
-    return vestedApi.patch(`/users/${user}/${answers}`, {
-        formResponses: {
-            "environmentalRating": env,
-            "socialRating": soc,
-            "governanceRating": gov
-        }
-    })
-    .then(({data: {result}}) => {
-        console.log(result)
-        return result
-    })
-    .catch((err) => {
-      console.dir(err);
-      throw new Error(err.response.data.msg);
-    });
+	return vestedApi
+		.patch(`/users/${user}/${answers}`, {
+			formResponses: {
+				environmentalRating: env,
+				socialRating: soc,
+				governanceRating: gov,
+			},
+		})
+		.then(({ data: { result } }) => {
+			console.log(result);
+			return result;
+		})
+		.catch((err) => {
+			console.dir(err);
+			throw new Error(err.response.data.msg);
+		});
 }
 
 export function fetchUser(username) {
@@ -400,4 +398,3 @@ export function fetchUser(username) {
 			console.dir(err);
 		});
 }
-
