@@ -101,3 +101,9 @@ export async function getStockNames(tickers) {
 	const names = tickerNameFilter(x);
 	return names;
 }
+
+export async function getUserData(username) {
+	const result = await api.fetchUser(username);
+	const userData = result.result;
+	return userData;
+}

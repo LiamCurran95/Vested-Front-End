@@ -202,8 +202,9 @@ export default function Form() {
           }
         </ul>
 
-        <Link to={ ready ? "/profile" : "/form" }
+        <Link to={ ready ? "/profile" : "" }
         onClick={()=>{
+          if(ready === false) {
           const portfolioTickers = portfolioResults.map(result => {
             return result.ticker
           })
@@ -213,8 +214,10 @@ export default function Form() {
           api.updatePortfolioOfUser(finishedPortfolio, loggedInUser.username, portfolioOption)
           .then((result) => {
             setLoggedInUser(result)
+            console.log(result)
             setReady(true)
           })
+        }
         }}
         >{ ready ? "Go To Profile" : "Confirm Choices" }</Link>
       </main>

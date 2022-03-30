@@ -1,50 +1,93 @@
-import UserBanner from "./UserBanner";
-import UserPortfolioView from "./UserPortfolioView";
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../context/userContext";
+import * as React from "react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import * as api from "../api";
+import { Chart } from "./Chart";
+import { fetchUser } from "../api";
+import { getUserData } from "../util-functions";
 
-export default function UserProfile() {
+export default function OtherUserProfile() {
 	let { username } = useParams();
-	const [userData, setUserData] = useState();
-	const [userPortfolio, setUserPortfolio] = useState();
 	const [isLoading, setIsLoading] = useState(true);
+	const [shownPortfolio, setShownPortfolio] = useState([]);
+	const [userData, setUserData] = useState([]);
+	const [changeView, setChangeView] = useState([])
 
 	useEffect(() => {
-		setIsLoading(true);
-		api
-			.fetchUser(username)
-			.then((response) => {
-				console.log("userData: ", response);
-				setUserData(response.result);
+		if (shownPortfolio.length === 0 && changeView.length === 0) {
+			getUserData(username)
+			.then((result) => {
+				setUserData(result);
+				setShownPortfolio(result.portfolio1.tickers);
 				setIsLoading(false);
-			})
-			.catch((err) => console.dir(err));
-	}, [username]);
+			});
+		} else if(changeView.length === 0) {
+			setIsLoading(false)
+		}
+	}, [shownPortfolio]);
 
-	return isLoading ? (
-		<p>Profile is loading</p>
-	) : (
+	useEffect(() => {
+		if(changeView.length !== 0) {
+			setShownPortfolio(changeView)
+			setChangeView([])
+		} else {
+			setIsLoading(false)
+		}
+	}, [changeView])
+
+	console.log(shownPortfolio)
+	
+	if (isLoading === true) return <p>loading...</p>
+	return (
 		<main className="user-profile">
 			<section className="user-banner">
 				<img src={userData.avatarUrl}></img>
 				<div className="profile-text-container">
 					<h2>{userData.username}</h2>
-					<ul>
-						<li>Achievement1</li>
-						<li>Achievement2</li>
-						<li>Achievement2</li>
-					</ul>
 				</div>
 			</section>
-			<section className="user-portfolio-list">
-				<li>
-					<p>{userData.portfolio1.tickers}</p>
-					<p>{userData.portfolio2.tickers}</p>
-					<p>{userData.portfolio3.tickers}</p>
-				</li>
-			</section>
+			<Stack spacing={2} direction="row">
+				<Button
+					onClick={() => {
+						setIsLoading(true);
+						setChangeView(userData.portfolio1.tickers);
+					}}
+					variant="outlined"
+				>
+					Show Portfolio 1
+				</Button>
+				<Button
+					onClick={() => {
+						setIsLoading(true);
+						setChangeView(userData.portfolio2.tickers);
+					}}
+					variant="outlined"
+				>
+					Show Portfolio 2
+				</Button>
+				<Button
+					onClick={() => {
+						setIsLoading(true);
+						setChangeView(userData.portfolio3.tickers);
+					}}
+					variant="outlined"
+				>
+					Show Portfolio 3
+				</Button>
+			</Stack>
+			{isLoading === true ? <p>Loading Chart...</p> : <Chart tickers={shownPortfolio} />}
+			<>
+				<section className="user-portfolio-list">
+					{shownPortfolio.length !== 0 ? "" : shownPortfolio.map((portfolio, index) => {
+						return (
+							<li key={index}>
+								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
+							</li>
+						);
+					})}
+				</section>
+			</>
 		</main>
 	);
 }
