@@ -1,15 +1,16 @@
 import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
-
 import * as api from "../api"
+
 export default function LoginPage(){
     const {loggedInUser, setLoggedInUser} = useContext(UserContext)
     const [emailInputted, setEmailInputted] = useState('')
     const [loggingIn, setLoggingIn] = useState(false)
     const [newUser, setNewUser] = useState()
     const [welcomeMessage, setWelcomeMessage] = useState('Welome Anon')
-    // const emailRegex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
+    const [validEmail, setValidEmail] = useState(true)
+    const emailRegex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
 
     useEffect(() => {
         setWelcomeMessage("Welcome " + emailInputted.split("@")[0])
@@ -33,9 +34,12 @@ export default function LoginPage(){
                     onSubmit={(e) => {
                             e.preventDefault()
                             console.log(emailInputted)
+                            if(emailInputted.match(emailRegex)){
+                                setValidEmail(true)
                                 return api.findUser(emailInputted.split("@")[0])
                                 .then((response) => {
-                                    if(response !== null){
+                                    console.log(response)
+                                    if(response !== null && response !== undefined){
                                         console.log("found user")
                                         setLoggedInUser(response)
                                         setNewUser(false)
@@ -63,12 +67,16 @@ export default function LoginPage(){
                                         setNewUser(true)
                                     }
                                 })
+                            } else {
+                                setValidEmail(false)
                             } 
+                        }
                     }
                 >
                     <label>Email Address</label>
                     <input type="text"
-                    placeholder="Enter Email here..."
+                    style={ validEmail ? null : { backgroundColor: "red" }}
+                    placeholder={ validEmail === true ? "Enter Email here..." : "Email Not Valid"}
                     value={emailInputted}
                     onChange={
                         (e) => {
@@ -81,7 +89,7 @@ export default function LoginPage(){
                 </div>
             </div>
             <div className="disclaimer-text">
-                <h4>Disclaimer - We will not store any of your personal information</h4>
+                <h4>Disclaimer - We will not share any of your personal information</h4>
             </div>
         </main>
     )
@@ -96,7 +104,7 @@ export default function LoginPage(){
                                     <Link to="/profile" style={{ textDecoration: "none" }}>Let's check!</Link>}
                     </div>
                     <div className="disclaimer-text">
-                        <h4>Disclaimer - We will not store any of your personal information</h4>
+                        <h4>Disclaimer - We will not share any of your personal information</h4>
                     </div>
                 </main>
             )
