@@ -13,7 +13,7 @@ export default function LandingPage(){
                         simulated portfolio performs, compare it to portfolios with interested weighted in other areas... 
                         jump in and explore.</p>
                     <div className="button-container">
-                        <Link to="/welcome"><button>New User</button></Link>
+                        <Link to="/welcome"><button> Take a tour!</button></Link>
                         <Link to="/login"><button>Login</button></Link>
                     </div>
                 </section>
