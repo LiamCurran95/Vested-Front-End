@@ -359,8 +359,9 @@ export function updatePortfolioOfUser(tickerArr, username, portfolio) {
 		.patch(`/${username}/${portfolio}`, {
 			tickers: tickerArr,
 		})
-		.then((data) => {
-			return data;
+		.then(({data: {result}}) => {
+            console.log(result)
+			return result;
 		})
 		.catch((err) => {
 			console.dir(err);
