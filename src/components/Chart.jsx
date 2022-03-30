@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../context/userContext";
 import * as api from "../api";
+import { generateChartData } from "../util-functions";
 
 import {
 	AnimatedAxis, // any of these can be non-animated equivalents
@@ -10,23 +11,19 @@ import {
 	Tooltip,
 } from "@visx/xychart";
 
-export default function Chart({ tickers }) {
-	const { loggedInUser } = useContext(UserContext);
+export function Chart({ tickers }) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [toggled, setToggled] = useState(false);
-	const [data, setData] = useState([]);
 	const [portfolio, setPortfolio] = useState([]);
+	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		setIsLoading(true);
 		setPortfolio(tickers);
-		api
-			.getPolygonData()
+		generateChartData()
 			.then((result) => {
 				setData(result);
 				setIsLoading(false);
-				data;
 			})
 			.catch((err) => {
 				setIsLoading(false);
@@ -67,18 +64,8 @@ export default function Chart({ tickers }) {
 		yAccessor: (d) => d.y,
 	};
 
-	return isLoading ? (
-		<p>Portfolio chart is loading</p>
-	) : (
+	return (
 		<>
-			{/* <button
-				onClick={() => {
-					toggled ? setToggled(false) : setToggled(true);
-				}}
-			>
-				{" "}
-				show data for stock 1{" "}
-			</button> */}
 			<XYChart
 				height={300}
 				xScale={{ type: "band" }}
@@ -92,50 +79,27 @@ export default function Chart({ tickers }) {
 					data={ticker1ChartData}
 					{...accessors}
 				/>
-
-				{/* conditional logic to render different lines based on selections  */}
-
 				<AnimatedLineSeries
-					// id={toggled ? "show" : "hide"}
-					// onClick={() => {
-					// 	setToggled(false);
-					// }}
 					dataKey={`${portfolio[1]}`}
 					data={ticker2ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					// id={toggled ? "show" : "hide"}
-					// onClick={() => {
-					// 	setToggled(false);
-					// }}
 					dataKey={`${portfolio[2]}`}
 					data={ticker3ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					// id={toggled ? "show" : "hide"}
-					// onClick={() => {
-					// 	setToggled(false);
-					// }}
 					dataKey={`${portfolio[3]}`}
 					data={ticker4ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					// id={toggled ? "show" : "hide"}
-					// onClick={() => {
-					// 	setToggled(false);
-					// }}
 					dataKey={`${portfolio[4]}`}
 					data={ticker5ChartData}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
-					// id={toggled ? "show" : "hide"}
-					// onClick={() => {
-					// 	setToggled(false);
-					// }}
 					dataKey={`${portfolio[1]}`}
 					data={ticker2ChartData}
 					{...accessors}

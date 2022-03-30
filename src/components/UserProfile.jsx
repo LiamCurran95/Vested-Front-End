@@ -9,8 +9,7 @@ import UserPortfolioView from "./UserPortfolioView";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { Link, useParams } from "react-router-dom";
-import Chart from "./Chart";
-import { stockNames } from "../util-functions";
+import { Chart } from "./Chart";
 
 export default function UserProfile() {
 	const { loggedInUser } = useContext(UserContext);
@@ -25,7 +24,6 @@ export default function UserProfile() {
 	];
 
 	useEffect(() => {
-		const test = stockNames(shownPortfolio);
 		setIsLoading(true);
 		setIsLoading(false);
 	}, [shownPortfolio]);
@@ -78,14 +76,6 @@ export default function UserProfile() {
 					{shownPortfolio.map((portfolio, index) => {
 						return (
 							<li key={index}>
-								<>
-									{/* <FormGroup>
-										<FormControlLabel
-											control={<Checkbox defaultChecked />}
-											label={`Include ${portfolio} in data vis.`}
-										/>
-									</FormGroup> */}
-								</>
 								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
 							</li>
 						);

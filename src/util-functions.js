@@ -34,7 +34,6 @@ export async function generatePortfolio(env, soc, gov, user) {
 			} else {
 				company.score = 0;
 			}
-
 			return company;
 		});
 		return scoredCompanies;
@@ -75,6 +74,11 @@ export async function generatePortfolio(env, soc, gov, user) {
 	await api.updateUserFormAnswers(username, answers, env, soc, gov);
 
 	return portfolioCompanies;
+}
+
+export async function generateChartData() {
+	const polygonData = await api.getPolygonData();
+	return polygonData;
 }
 
 export async function stockNames(tickers) {
