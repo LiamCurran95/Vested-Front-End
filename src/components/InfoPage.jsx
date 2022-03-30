@@ -35,13 +35,13 @@ export default function InfoPage(){
             <dl>
                 Environmental, social, and governance (ESG) criteria are an increasingly popular way for investors to evaluate companies in which they might want to invest. Many mutual funds, brokerage firms, and robo-advisors now offer products that employ ESG criteria.ESG criteria can also help investors avoid companies that might pose a greater financial risk due to their environmental or other practices. 
             </dl>
-            <cite > <a className="cite" href="https://www.investopedia.com/terms/e/environmental-social-and-governance-esg-criteria.asp"> Investopedia</a></cite>
+            <cite > <a className="cite" href="https://www.investopedia.com/terms/e/environmental-social-and-governance-esg-criteria.asp"> [Investopedia]</a></cite>
 
 
             <dl>
                 There is not a standardised approach to the calculation or presentation of different ESG metrics. Investors can employ a variety of analytical approaches and data sources to address ESG considerations, including weighting to client interest and potential value. Understanding the relative merits and limitations of different metrics can help to form a more complete picture of ESG risks and opportunities. 
             </dl>
-            <cite > <a className="cite" href="https://www.cfainstitute.org/en/research/esg-investing"> CFA Institute </a></cite>
+            <cite > <a className="cite" href="https://www.cfainstitute.org/en/research/esg-investing"> [CFA Institute] </a></cite>
         
         </ul>
 

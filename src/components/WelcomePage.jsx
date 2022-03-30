@@ -41,7 +41,7 @@ export default function WelcomePage(){
             </div>
             <div className="create-profile-container">
                 <h3>Ready to create your profile?</h3>
-                <button><Link to="/login" style={{textDecoration: "none"}}>Let's go!</Link></button>
+                <button><Link to="/login" style={{textDecoration: "none"} } className="log-in-link">Let's go!</Link></button>
             </div>
         </main>
     )
