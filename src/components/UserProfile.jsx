@@ -6,6 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import UserBanner from "./UserBanner";
 import UserPortfolioView from "./UserPortfolioView";
+import Collapse from "./Collapse"
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { Link, useParams } from "react-router-dom";
@@ -44,6 +45,8 @@ export default function UserProfile() {
 					<h2>{loggedInUser.username}</h2>
 				</div>
 			</section>
+
+			<Collapse>
 			<Stack spacing={2} direction="row">
 				<Button
 					onClick={() => {
@@ -71,6 +74,7 @@ export default function UserProfile() {
 				</Button>
 			</Stack>
 			<Chart tickers={shownPortfolio} />
+			</Collapse>
 			<>
 				<section className="user-portfolio-list">
 					{shownPortfolio.map((portfolio, index) => {
@@ -82,6 +86,7 @@ export default function UserProfile() {
 					})}
 				</section>
 			</>
+			
 		</main>
 	);
 }
