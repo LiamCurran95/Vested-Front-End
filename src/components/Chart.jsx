@@ -21,9 +21,10 @@ export default function Chart({ tickers }) {
 	useEffect(() => {
 		setIsLoading(true);
 		setPortfolio(tickers);
-		api
+		return api
 			.getPolygonData()
 			.then((result) => {
+				// console.log(result);
 				setData(result);
 				setIsLoading(false);
 				data;

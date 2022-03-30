@@ -230,7 +230,11 @@ export function getEsgData() {
 export function getPolygonData() {
 	return vestedApi
 		.get("/polygon")
-		.then(({ data: { result } }) => {
+		.then((data) => {
+			const result = data.data;
+			return result;
+		})
+		.then(({ result }) => {
 			const topCompanies = [
 				"A",
 				"AAPL",
@@ -359,8 +363,8 @@ export function updatePortfolioOfUser(tickerArr, username, portfolio) {
 		.patch(`/${username}/${portfolio}`, {
 			tickers: tickerArr,
 		})
-		.then(({data: {result}}) => {
-            console.log(result)
+		.then(({ data: { result } }) => {
+			console.log(result);
 			return result;
 		})
 		.catch((err) => {

@@ -34,7 +34,6 @@ export async function generatePortfolio(env, soc, gov, user) {
 			} else {
 				company.score = 0;
 			}
-
 			return company;
 		});
 		return scoredCompanies;
