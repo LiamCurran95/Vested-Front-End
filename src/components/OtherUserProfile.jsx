@@ -12,27 +12,33 @@ export default function OtherUserProfile() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [shownPortfolio, setShownPortfolio] = useState([]);
 	const [userData, setUserData] = useState([]);
+	const [changeView, setChangeView] = useState([])
 
 	useEffect(() => {
-		setIsLoading(true);
-		if (shownPortfolio.length === 0) {
-			getUserData(username).then((result) => {
+		if (shownPortfolio.length === 0 && changeView.length === 0) {
+			getUserData(username)
+			.then((result) => {
 				setUserData(result);
 				setShownPortfolio(result.portfolio1.tickers);
+				setIsLoading(false);
 			});
-			setIsLoading(false);
+		} else if(changeView.length === 0) {
+			setIsLoading(false)
 		}
-		setIsLoading(false);
 	}, [shownPortfolio]);
 
-	const changePortfolioView = (param) => {
-		setIsLoading(true);
-		setShownPortfolio(param);
-		setIsLoading(false);
-	};
+	useEffect(() => {
+		if(changeView.length !== 0) {
+			setShownPortfolio(changeView)
+			setChangeView([])
+		} else {
+			setIsLoading(false)
+		}
+	}, [changeView])
 
-	if (userData.length !== 0 && isLoading === true) return <p>loading...</p>;
-	console.log(userData);
+	console.log(shownPortfolio)
+	
+	if (isLoading === true) return <p>loading...</p>
 	return (
 		<main className="user-profile">
 			<section className="user-banner">
@@ -44,7 +50,8 @@ export default function OtherUserProfile() {
 			<Stack spacing={2} direction="row">
 				<Button
 					onClick={() => {
-						changePortfolioView(userData.portfolio1);
+						setIsLoading(true);
+						setChangeView(userData.portfolio1.tickers);
 					}}
 					variant="outlined"
 				>
@@ -52,7 +59,8 @@ export default function OtherUserProfile() {
 				</Button>
 				<Button
 					onClick={() => {
-						changePortfolioView(userData.portfolio2);
+						setIsLoading(true);
+						setChangeView(userData.portfolio2.tickers);
 					}}
 					variant="outlined"
 				>
@@ -60,17 +68,18 @@ export default function OtherUserProfile() {
 				</Button>
 				<Button
 					onClick={() => {
-						changePortfolioView(userData.portfolio3);
+						setIsLoading(true);
+						setChangeView(userData.portfolio3.tickers);
 					}}
 					variant="outlined"
 				>
 					Show Portfolio 3
 				</Button>
 			</Stack>
-			<Chart tickers={shownPortfolio} />
+			{isLoading === true ? <p>Loading Chart...</p> : <Chart tickers={shownPortfolio} />}
 			<>
 				<section className="user-portfolio-list">
-					{shownPortfolio.map((portfolio, index) => {
+					{shownPortfolio.length !== 0 ? "" : shownPortfolio.map((portfolio, index) => {
 						return (
 							<li key={index}>
 								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
