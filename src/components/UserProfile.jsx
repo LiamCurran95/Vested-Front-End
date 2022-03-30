@@ -11,6 +11,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { Link, useParams } from "react-router-dom";
 import { Chart } from "./Chart";
+import {stockNames} from "../util-functions"
 
 export default function UserProfile() {
 	const { loggedInUser } = useContext(UserContext);
@@ -35,6 +36,10 @@ export default function UserProfile() {
 		setIsLoading(false);
 	};
 
+	const tickers = () => {
+		return stockNames(shownPortfolio)
+	}
+
 	return isLoading ? (
 		<p>Profile is loading</p>
 	) : (
@@ -46,6 +51,15 @@ export default function UserProfile() {
 				</div>
 			</section>
 
+			<section className="profile-introduction">
+				<h2>See your portfolios</h2>
+				<h4>Here are the portfolios that Vested has generated for you based on the ESG prefences you specified when you added the portfolio</h4>
+				<h4> click to explore stock performance in each portfolio over time</h4>
+
+			</section>
+
+
+			
 			<Collapse>
 			<Stack spacing={2} direction="row">
 				<Button
@@ -73,20 +87,25 @@ export default function UserProfile() {
 					Show Portfolio 3
 				</Button>
 			</Stack>
-			<Chart tickers={shownPortfolio} />
-			</Collapse>
+			<section className="profile-data-vis">
+			<Chart tickers={shownPortfolio}  />
+			
 			<>
 				<section className="user-portfolio-list">
+					<h4>Companies in Portfolio </h4>
 					{shownPortfolio.map((portfolio, index) => {
 						return (
 							<li key={index}>
-								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
+								<Link to={`/companyinfo/${portfolio}`} className="link">
+									{portfolio}</Link>
+									
 							</li>
 						);
 					})}
 				</section>
 			</>
-			
+			</section>
+		</Collapse>
 		</main>
 	);
 }
