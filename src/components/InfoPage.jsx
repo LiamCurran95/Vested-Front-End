@@ -43,11 +43,7 @@ export default function InfoPage(){
             </dl>
             <cite > <a className="cite" href="https://www.cfainstitute.org/en/research/esg-investing"> [CFA Institute] </a></cite>
         
-        </ul>
-
-
-
-        <ul >
+       
             Here are some resources to learn more about ESG criteria and their uses in corporate governance:
             <li > <a className="cite" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835214/Sep_2019_bulletin.pdf">GOV.uk</a></li>
             <li> <a className="cite" href="https://www.mckinsey.com/business-functions/strategy-and-corporate-finance/our-insights/five-ways-that-esg-creates-value">McKinsey & Company</a></li>

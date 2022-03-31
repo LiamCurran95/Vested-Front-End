@@ -9,7 +9,7 @@ export default function Collapse ({children}) {
 
   return (
     <>
-    <button className="collapse" onClick={handleClick}> {isVisible? "Hide graphs" : "Show graphs"} </button>
+    <button className="collapse" onClick={handleClick}> {isVisible? "Hide portfolios" : "Show portfolios"} </button>
     {isVisible && children}
     </>
   )

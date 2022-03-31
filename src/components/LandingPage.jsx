@@ -10,7 +10,7 @@ export default function LandingPage(){
                         Answer a few simple questions, and we can show you a theoretical portfolio with companies we think 
                         you'll be interested in. We'll show you companies that rank highly on the things you care about, 
                         which also have stocks that are performing well. You can research companies further, track how your 
-                        simulated portfolio performs, compare it to portfolios with interested weighted in other areas... 
+                        simulated portfolio performs, compare it to portfolios with interests weighted in other areas... 
                         jump in and explore.</p>
                     <div className="button-container">
                         <Link to="/welcome"><button> Take a tour!</button></Link>

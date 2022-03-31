@@ -105,8 +105,8 @@ export default function LoginPage(){
                 <main className="log-in">
                     <div className="logging-in-container">
                         <h2>{welcomeMessage}</h2>
-                        {newUser ? <p>Please take the time to create your first portfolio with us</p> :
-                                    <p>Have a look at your portfolios on your profile page</p>}
+                        {newUser ? <h3>Please take the time to create your first portfolio with us</h3> :
+                                    <h3>Have a look at your portfolios on your profile page</h3>}
                         {newUser ? <Link to="/form" style={{ textDecoration: "none" }} className="link">create a portfolio</Link> :
                                     <Link to="/profile" style={{ textDecoration: "none" }} className="link">see portfolios</Link>}
                     </div>

@@ -44,47 +44,49 @@ export default function UserProfile() {
 				</div>
 			</section>
 
+			{loggedInUser.username === "Guest" ? <h2>Please log in to see your profile</h2> :
+                                    <>
 			<section className="profile-introduction">
-				<h2>See your portfolios</h2>
+				<h2>your current portfolios</h2>
 				<h4>
 					Here are the portfolios that Vested has generated for you based on the
-					ESG prefences you specified when you added the portfolio
+					ESG prefences you specified when you added each portfolio
 				</h4>
-				<h4> click to explore stock performance in each portfolio over time</h4>
+				<h4> click to visually explore stock performance in each portfolio over time</h4>
 			</section>
 
 			{/* {if (isPortfolioLoading === true) <p>"Loading" </p> 
 			else */}
 
 			<Collapse>
-				<Stack spacing={2} direction="row">
-					<Button
+				<div className="portfolio-view-buttons">
+					<button
 						onClick={() => {
 							changePortfolioView(userPortfolios[0].portfolio1);
 						}}
-						variant="outlined"
 					>
-						Show Portfolio 1
-					</Button>
-					<Button
+						Portfolio 1
+					</button>
+					<button
 						onClick={() => {
 							changePortfolioView(userPortfolios[1].portfolio2);
 						}}
 						variant="outlined"
 					>
-						Show Portfolio 2
-					</Button>
-					<Button
+						Portfolio 2
+					</button>
+					<button
 						onClick={() => {
 							changePortfolioView(userPortfolios[2].portfolio3);
 						}}
 						variant="outlined"
 					>
-						Show Portfolio 3
-					</Button>
-				</Stack>
+						Portfolio 3
+					</button>
+				</div>
 				<section className="profile-data-vis">
-					<Chart tickers={shownPortfolio} />
+
+					<Chart tickers={shownPortfolio} className="chart" />
 					<>
 						<section className="user-portfolio-list">
 							<h4>Companies in Portfolio </h4>
@@ -127,6 +129,7 @@ export default function UserProfile() {
 					</>
 				</section>
 			</Collapse>
+			</>}
 		</main>
 	);
 }

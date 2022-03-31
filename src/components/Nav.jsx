@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { ThemeContext } from "../context/themeContext";
+import SearchBar from "./SearchBar";
 
 export default function Nav() {
     const { loggedInUser } = useContext(UserContext)
@@ -24,9 +25,11 @@ export default function Nav() {
                     <Link to="/form" style={{ textDecoration: "none" }} id={navClicked ? "show" : "hide"} onClick={() => { setNavClicked(false) }}>New Portfolio</Link>
                 </section>
                 </div>
-                <button onClick={toggleFunction}> {toggle? " ☼ " : " ☾ " } </button>
+                <button onClick={toggleFunction}> {toggle? " ☼ " : " ☾ " } theme </button>
             </section>
-          
+
+            <div className="right-nav-search">
+            
             <section className="right-nav">
 			<button id={`${loggedInUser.username !== "Guest"? "hide" : "show"}`}>
 					<Link to="/login" style={{ textDecoration: "none" }} className="log-in-link">
@@ -38,6 +41,8 @@ export default function Nav() {
                 <img className="nav-img-avatar" src={loggedInUser ? loggedInUser.avatarUrl : ""} alt="user-avi" />
             </span>	
             </section>
+            <SearchBar />
+            </div>
         </nav>
         </>
     )

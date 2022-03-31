@@ -92,8 +92,7 @@ export default function Form() {
     return (
     <main className="form">
       <h3>Answer some short questions about ESG criteria and let Vested generate a suggested portfolio.</h3>
-      <h4>We combine your personal ranked choices about areas that are most important to you with the current stock market in order to decide the best
-        companies for your you to invest in.
+      <h4>We combine your personal ranked choices about areas that are most important to you with the current stock market in order to suggest companies for you to invest in.
       </h4>
       <h4>How strongly would you rate your interest in the following issues (0 is of less importance, 5 is of most importance)</h4>
 
@@ -186,7 +185,7 @@ export default function Form() {
   );
   } else {
     return (
-      <main>
+      <main className="form-confirm">
         <h3>Thank you for submitting your answers</h3>
         <h4>Here are your portfolio results:</h4>
         <ul>
@@ -202,7 +201,7 @@ export default function Form() {
           }
         </ul>
 
-        <Link to={ ready ? "/profile" : "" }
+        <Link className="link" to={ ready ? "/profile" : "" }
         onClick={()=>{
           if(ready === false) {
           const portfolioTickers = portfolioResults.map(result => {

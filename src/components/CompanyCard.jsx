@@ -21,15 +21,17 @@ export default function CompanyCard() {
 
   if (isLoading) return <p>Loading...</p>;
   return (<main className="company-card">
-    <section className="company-info">
+     <h2>{company}</h2>
+     <section className="company-info">
     <img src={companyData.image.contentUrl}/>
     <section className="company-info-text">
-      <h2>{company}</h2>
+     
       <p>{companyData.description}</p>
       <p>{companyData.detailedDescription.articleBody}</p>
       <section className = "company-info-links">
-      <a href={companyData.url}>{companyData.url}</a>
-      <a href={companyData.detailedDescription.url}>Click here for more info</a>
+      <a className="link" href={companyData.url}>{company} website </a>
+      <br></br>
+      <a className="link" href={companyData.detailedDescription.url}>See more</a>
       </section>
       </section>
       </section>
