@@ -107,35 +107,35 @@ export default function UserProfile() {
 							<h4>Companies in Portfolio </h4>
 							<h5>{stockNames[0].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[0].ticker}`}
+								to={`/companyinfo/${stockNames[0].name}`}
 								className="link"
 							>
 								{stockNames[0].ticker}
 							</Link>
 							<h5>{stockNames[1].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[1].ticker}`}
+								to={`/companyinfo/${stockNames[1].name}`}
 								className="link"
 							>
 								{stockNames[1].ticker}
 							</Link>
 							<h5>{stockNames[2].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[2].ticker}`}
+								to={`/companyinfo/${stockNames[2].name}`}
 								className="link"
 							>
 								{stockNames[2].ticker}
 							</Link>
 							<h5>{stockNames[3].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[3].ticker}`}
+								to={`/companyinfo/${stockNames[3].name}`}
 								className="link"
 							>
 								{stockNames[3].ticker}
 							</Link>
 							<h5>{stockNames[4].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[4].ticker}`}
+								to={`/companyinfo/${stockNames[4].name}`}
 								className="link"
 							>
 								{stockNames[4].ticker}

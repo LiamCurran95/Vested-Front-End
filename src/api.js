@@ -22,7 +22,7 @@ export const fetchCompanyDetails = (companyName) => {
 export function getNewsFeed(companies) {
 	return axios
 		.get(
-			`https://api.marketaux.com/v1/news/all?symbols=${companies}&filter_entities=true&api_token=${newsKey}`
+			`https://api.marketaux.com/v1/news/all?symbols=${companies}&filter_entities=true&language=en&api_token=${newsKey}`
 		)
 		.then((res) => {
 			return res.data.data;
