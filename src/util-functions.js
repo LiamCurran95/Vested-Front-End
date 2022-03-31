@@ -88,17 +88,17 @@ export async function getStockNames(tickers) {
 		return portfolioTickers.includes(item.ticker);
 	});
 
-	const tickerNameFilter = (param) => {
+	const tickerNameFilter = (x) => {
 		let tickerArr = [];
 		let namesArr = [];
-		param.forEach((stock) => {
+		x.forEach((stock) => {
 			tickerArr.push(stock.ticker);
 			namesArr.push(stock.name);
 		});
-		return namesArr;
+		const value = tickerArr.map((ticker, i) => ({ ticker, name: namesArr[i] }));
+		return value;
 	};
-
-	const names = tickerNameFilter(x);
+	let names = tickerNameFilter(x);
 	return names;
 }
 

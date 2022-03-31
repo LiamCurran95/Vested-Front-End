@@ -22,12 +22,11 @@ export default function UserProfile() {
 	const [stockNames, setStockNames] = useState([]);
 
 	useEffect(() => {
-		setIsLoading(true);
 		getStockNames(shownPortfolio).then((result) => {
 			setStockNames(result);
+			setIsLoading(false);
 		});
-		setIsLoading(false);
-	}, [shownPortfolio]);
+	}, [shownPortfolio, stockNames]);
 
 	const changePortfolioView = (param) => {
 		setIsLoading(true);
@@ -35,9 +34,8 @@ export default function UserProfile() {
 		setIsLoading(false);
 	};
 
-	return isLoading ? (
-		<p>Profile is loading</p>
-	) : (
+	if (isLoading === true) return <p>"Loading" </p>;
+	return (
 		<main className="user-profile">
 			<section className="user-banner">
 				<img src={loggedInUser.avatarUrl}></img>
@@ -56,6 +54,9 @@ export default function UserProfile() {
 				</h4>
 				<h4> click to visually explore stock performance in each portfolio over time</h4>
 			</section>
+
+			{/* {if (isPortfolioLoading === true) <p>"Loading" </p> 
+			else */}
 
 			<Collapse>
 				<div className="portfolio-view-buttons">
@@ -84,30 +85,45 @@ export default function UserProfile() {
 					</button>
 				</div>
 				<section className="profile-data-vis">
-					<Chart tickers={shownPortfolio} className="chart"/>
 
+					<Chart tickers={shownPortfolio} className="chart" />
 					<>
 						<section className="user-portfolio-list">
-							<h4>Companies in this Portfolio </h4>
-							<h5>{stockNames[0]}</h5>
-							<Link to={`/companyinfo/${shownPortfolio[0]}`} className="link">
-								{shownPortfolio[0]}
+							<h4>Companies in Portfolio </h4>
+							<h5>{stockNames[0].name}</h5>
+							<Link
+								to={`/companyinfo/${stockNames[0].ticker}`}
+								className="link"
+							>
+								{stockNames[0].ticker}
 							</Link>
-							<h5>{stockNames[1]}</h5>
-							<Link to={`/companyinfo/${shownPortfolio[1]}`} className="link">
-								{shownPortfolio[1]}
+							<h5>{stockNames[1].name}</h5>
+							<Link
+								to={`/companyinfo/${stockNames[1].ticker}`}
+								className="link"
+							>
+								{stockNames[1].ticker}
 							</Link>
-							<h5>{stockNames[2]}</h5>
-							<Link to={`/companyinfo/${shownPortfolio[2]}`} className="link">
-								{shownPortfolio[2]}
+							<h5>{stockNames[2].name}</h5>
+							<Link
+								to={`/companyinfo/${stockNames[2].ticker}`}
+								className="link"
+							>
+								{stockNames[2].ticker}
 							</Link>
-							<h5>{stockNames[3]}</h5>
-							<Link to={`/companyinfo/${shownPortfolio[3]}`} className="link">
-								{shownPortfolio[3]}
+							<h5>{stockNames[3].name}</h5>
+							<Link
+								to={`/companyinfo/${stockNames[3].ticker}`}
+								className="link"
+							>
+								{stockNames[3].ticker}
 							</Link>
-							<h5>{stockNames[4]}</h5>
-							<Link to={`/companyinfo/${shownPortfolio[4]}`} className="link">
-								{shownPortfolio[4]}
+							<h5>{stockNames[4].name}</h5>
+							<Link
+								to={`/companyinfo/${stockNames[4].ticker}`}
+								className="link"
+							>
+								{stockNames[4].ticker}
 							</Link>
 						</section>
 					</>
