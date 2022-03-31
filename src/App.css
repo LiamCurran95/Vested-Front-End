@@ -665,6 +665,9 @@ section.profile-data-vis .user-portfolio-list {
   text-align: center;
 }
 
+.x-tick, .x-label, .y-tick, .y-label {
+  color: #466d1d;
+}
 
 .user-profile h2 {
   text-transform: uppercase;
@@ -710,23 +713,67 @@ main.user-profile section.user-portfolio-list li {
   text-transform: uppercase;
   text-align: center;
   font-style: italic;
+  font-size: 2rem;
 }
 
 .form h4,
 .form-confirm h4 {
   text-align: center;
+  font-size: 1.5rem;
+}
+
+.form form {
+  margin: 0rem 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.form form dt {
+  margin-top: 2rem;
 }
 
 .form Input {
   padding: 2px;
+  text-align: center;
 }
 
 .form button {
-  margin: 5.5em;
+  margin: 3em;
+  padding: 1rem;
 }
 
 .form-confirm .link {
-  margin: 5.5em;
+  margin: 3rem;
+}
+
+.form-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.form-confirm ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 100vw;
+  font-size: 1.5rem;
+  padding: 0;
+}
+
+.form-confirm ul li {
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 /* News Feed */
@@ -820,17 +867,21 @@ footer {
 }
 
 .info-page dl {
-  height: 40vh;
-  width: 70vw;
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
-  transition: all 0.5s linear;
-  border-radius: 20px;
-  padding: 10px;
+	height: auto;
+	width: auto;
+	box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+	transition: all 0.5s linear;
+	border-radius: 20px;
+	padding: 2rem;
   text-align: justify;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .info-page dl:hover {
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 
 .info-page h2,
@@ -853,6 +904,14 @@ footer {
 
 .info-page dl {
   font-size: 1rem;
+}
+
+.external-link-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 /* Company Info Page */
@@ -961,5 +1020,33 @@ main.company-card section.company-info-text {
     width: 30vw;
     margin: 0 15vw;
     text-align: center;
+  }
+
+  .form form {
+    margin: 0rem 0;
+    width: 100vw;
+  }
+
+  .form-confirm ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100vw;
+    font-size: 1.5rem;
+    padding: 0;
+  }
+
+  .form-confirm ul li {
+    width: 100vw;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .external-link-container {
+    flex-direction: row;
   }
 }
