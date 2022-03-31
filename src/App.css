@@ -161,7 +161,9 @@ button:focus,
 }
 
 .collapse {
-  margin: 1.5em;
+  margin: 2rem;
+  padding: 1rem;
+  font-size: 1.5rem;
 }
 
 ul {
@@ -924,18 +926,19 @@ main.company-card {
 }
 
 .company-card img {
-  width: 100px;
-  height: 100px;
+  width: 30vw;
+  height: auto;
   object-fit: scale-down;
-  padding: 5px;
 }
 
 main.company-card section.company-info {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 1rem;
+  padding: 1rem;
+  min-height: 40vh;
 }
 
 main.company-card h2 {
@@ -945,7 +948,19 @@ main.company-card h2 {
 
 main.company-card section.company-info-text {
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+}
+
+main.company-card section.company-info-text a {
+  height: 10vh;
+  font-size: 1rem;
+  margin: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
 }
 
 .company-info-links {
@@ -953,7 +968,6 @@ main.company-card section.company-info-text {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  gap: 30px;
 }
 
 /* main.company-card section.company-info-links {

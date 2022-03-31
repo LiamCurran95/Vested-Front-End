@@ -29,7 +29,6 @@ export default function CompanyCard() {
       <p>{companyData.detailedDescription.articleBody}</p>
       <section className = "company-info-links">
       <a className="link" href={companyData.url} target="_blank">{company} website </a>
-      <br></br>
       <a className="link" href={companyData.detailedDescription.url} target="_blank">See more</a>
       </section>
       </section>
