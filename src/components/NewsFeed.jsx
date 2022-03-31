@@ -7,6 +7,9 @@ export default function NewsFeed(){
     const [userPortfolios, setUserPortfolios] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [articles, setArticles] = useState()
+
+    
+
     useEffect(()=> {
         let info = []
         for(let portfolio in portfolios) {
@@ -31,8 +34,7 @@ export default function NewsFeed(){
                             <h4>{article.title} - Source: {article.source}</h4>
                             <img src={article.image_url} alt={article.title}></img>
                             <p>{article.description}</p>
-                            <a href={article.url} target="_blank" rel="noreferrer">see more</a>
-                            <p>Posted: {article.published_at}</p>
+                            <a className="link" href={article.url} target="_blank" rel="noreferrer">see more</a>
                         </li>
                     )
                 })}

@@ -47,13 +47,15 @@ export default function SearchBar() {
 			onClick={()=>{
 				setSearch(true)
 			}}
-			>Search</button>
-			{users.includes(query) ? (
-				<Link to={`/users/${query}`}>User profile: {query}</Link>
-			) : null}
-			{companyNames.includes(query) ? (
-				<Link to={`/companyinfo/${query}`}>Info about: {query}</Link>
-			) : null}
+			>Go</button>
+			<div className="search-result">
+				{users.includes(query) ? (
+					<Link className="search-link link" style={{ textDecoration: "none" }} to={`/users/${query}`}>User: {query}</Link>
+				) : null}
+				{companyNames.includes(query) ? (
+					<Link className="search-link link" style={{ textDecoration: "none" }} to={`/companyinfo/${query}`}>Company: {query}</Link>
+				) : null}
+			</div>
 		</div>
 	);
 }

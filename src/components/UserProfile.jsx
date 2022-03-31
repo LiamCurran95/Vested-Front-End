@@ -99,7 +99,7 @@ export default function UserProfile() {
 				</div>
 				<section className="profile-data-vis">
 
-				{isLoading === true ? "" : <Chart tickers={shownPortfolio} className="chart" />}
+				{isLoading === true ? "" : <Chart tickers={shownPortfolio} />}
 
 				 
 				{stockNames.length === 0 ? "" : (	<>

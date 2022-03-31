@@ -84,7 +84,7 @@ export default function LoginPage(){
                             setEmailInputted(e.target.value)
                         }
                     }></input>
-                    <button>log in</button>
+                    <button className="log-in-button">log in</button>
                     </div>
 
                 </form>
