@@ -1,4 +1,9 @@
 import {Link} from "react-router-dom"
+import weighted_portfolio from '../media/weighted_portfolio.png'
+import news from '../media/news.png'
+import tracking_portfolio from '../media/tracking_portfolio.png'
+import other_user from '../media/other_user.png'
+
 
 
 export default function WelcomePage(){
@@ -9,14 +14,14 @@ export default function WelcomePage(){
             <div className="demo-list">
                 <ul>
                     <li>
-                        <img url=""></img>
+                        <img src={weighted_portfolio}></img>
                         <section>
                         <h2> ESG-Weighted portfolio </h2>
                         <p>Fill in the questionnaire and we’ll use your answers to generate five sample companies to add to your portfolio. You can create multiple portfolios with interests weighted in different  <Link to="/infopage" style={{ textDecoration: "none" }} className="text-link">ESG</Link> criteria.</p>
                         </section>
                     </li>
                     <li>
-                        <img url=""></img>
+                        <img src={news}></img>
                     <section>
                         <h2> Company information </h2>
                         <p>Find out more information about each company in your portfolio(s) and check out the latest news stories related to them. <br></br>
@@ -24,14 +29,14 @@ export default function WelcomePage(){
                         </section>
                     </li>
                     <li>
-                        <img url=""></img>
+                        <img src={other_user}></img>
                     <section>
                         <h2> Social interaction</h2>
                         <p>See other users’ public portfolios</p>
                     </section>
                     </li>
                     <li>
-                        <img url=""></img>
+                        <img src={tracking_portfolio}></img>
                         <section>
                         <h2> Portfolio monitoring</h2>
                         <p>Track your portfolios over time</p>
