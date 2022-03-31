@@ -6,16 +6,16 @@ import { Link } from "react-router-dom";
 export default function SearchBar() {
 	const [users, setUsers] = useState([]);
 	const [companyNames, setCompanyNames] = useState([]);
-	const [query, setQuery] = useState();
+	const [query, setQuery] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setIsLoading(true);
-		if (users.length === 0) {
+		if (users.length === 0 && query.length !== 0) {
 			fetchListOfUsernames().then((result) => {
 				setUsers(result);
 			});
-		} else if (companyNames.length === 0) {
+		} else if (companyNames.length === 0 && query.length !== 0) {
 			getEsgData().then((companies) => {
 				const companyArr = [];
 				companies.forEach((company) => {
@@ -24,7 +24,8 @@ export default function SearchBar() {
 				setCompanyNames(companyArr);
 			});
 		} else {
-			console.log("users and company names updated");
+			console.log("either initial mount or users and company names updated");
+			
 		}
 		setIsLoading(false);
 	}, [users, companyNames]);

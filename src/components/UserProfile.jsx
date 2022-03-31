@@ -20,19 +20,32 @@ export default function UserProfile() {
 		{ portfolio3: loggedInUser.portfolio3.tickers },
 	];
 	const [stockNames, setStockNames] = useState([]);
+	const [changingView, setChangingView] = useState([])
 
 	useEffect(() => {
-		getStockNames(shownPortfolio).then((result) => {
-			setStockNames(result);
+		if(changingView.length !== 0) {
+			getStockNames(shownPortfolio)
+				.then((result) => {
+				setStockNames(result);
+				setChangingView([])
+			});
+		} else {
 			setIsLoading(false);
-		});
+		}
 	}, [shownPortfolio, stockNames]);
 
 	const changePortfolioView = (param) => {
 		setIsLoading(true);
 		setShownPortfolio(param);
+		setChangingView(true)
 		setIsLoading(false);
 	};
+
+	console.log(shownPortfolio)
+	console.log(isLoading)
+	console.log(stockNames)
+	console.log(loggedInUser)
+	console.log(changingView)
 
 	if (isLoading === true) return <p>"Loading" </p>;
 	return (
@@ -86,8 +99,10 @@ export default function UserProfile() {
 				</div>
 				<section className="profile-data-vis">
 
-					<Chart tickers={shownPortfolio} className="chart" />
-					<>
+				{isLoading === true ? "" : <Chart tickers={shownPortfolio} className="chart" />}
+
+				 
+				{stockNames.length === 0 ? "" : (	<>
 						<section className="user-portfolio-list">
 							<h4>Companies in Portfolio </h4>
 							<h5>{stockNames[0].name}</h5>
@@ -126,7 +141,7 @@ export default function UserProfile() {
 								{stockNames[4].ticker}
 							</Link>
 						</section>
-					</>
+					</>)}
 				</section>
 			</Collapse>
 			</>}

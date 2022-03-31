@@ -225,11 +225,11 @@ export function getPolygonData() {
 	return vestedApi
 		.get("/polygon")
 		.then((data) => {
-			data;
-			const result = data.data;
+			console.log(data)
+			const result = data.data.result
 			return result;
 		})
-		.then(({ result }) => {
+		.then((result) => {
 			const topCompanies = [
 				"A",
 				"AAPL",
