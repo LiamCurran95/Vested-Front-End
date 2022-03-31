@@ -20,19 +20,32 @@ export default function UserProfile() {
 		{ portfolio3: loggedInUser.portfolio3.tickers },
 	];
 	const [stockNames, setStockNames] = useState([]);
+	const [changingView, setChangingView] = useState([])
 
 	useEffect(() => {
-		getStockNames(shownPortfolio).then((result) => {
-			setStockNames(result);
+		if(changingView.length !== 0) {
+			getStockNames(shownPortfolio)
+				.then((result) => {
+				setStockNames(result);
+				setChangingView([])
+			});
+		} else {
 			setIsLoading(false);
-		});
+		}
 	}, [shownPortfolio, stockNames]);
 
 	const changePortfolioView = (param) => {
 		setIsLoading(true);
 		setShownPortfolio(param);
+		setChangingView(true)
 		setIsLoading(false);
 	};
+
+	console.log(shownPortfolio)
+	console.log(isLoading)
+	console.log(stockNames)
+	console.log(loggedInUser)
+	console.log(changingView)
 
 	if (isLoading === true) return <p>"Loading" </p>;
 	return (
@@ -86,47 +99,49 @@ export default function UserProfile() {
 				</div>
 				<section className="profile-data-vis">
 
-					<Chart tickers={shownPortfolio} className="chart" />
-					<>
+				{isLoading === true ? "" : <Chart tickers={shownPortfolio} className="chart" />}
+
+				 
+				{stockNames.length === 0 ? "" : (	<>
 						<section className="user-portfolio-list">
 							<h4>Companies in Portfolio </h4>
 							<h5>{stockNames[0].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[0].ticker}`}
+								to={`/companyinfo/${stockNames[0].name}`}
 								className="link"
 							>
 								{stockNames[0].ticker}
 							</Link>
 							<h5>{stockNames[1].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[1].ticker}`}
+								to={`/companyinfo/${stockNames[1].name}`}
 								className="link"
 							>
 								{stockNames[1].ticker}
 							</Link>
 							<h5>{stockNames[2].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[2].ticker}`}
+								to={`/companyinfo/${stockNames[2].name}`}
 								className="link"
 							>
 								{stockNames[2].ticker}
 							</Link>
 							<h5>{stockNames[3].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[3].ticker}`}
+								to={`/companyinfo/${stockNames[3].name}`}
 								className="link"
 							>
 								{stockNames[3].ticker}
 							</Link>
 							<h5>{stockNames[4].name}</h5>
 							<Link
-								to={`/companyinfo/${stockNames[4].ticker}`}
+								to={`/companyinfo/${stockNames[4].name}`}
 								className="link"
 							>
 								{stockNames[4].ticker}
 							</Link>
 						</section>
-					</>
+					</>)}
 				</section>
 			</Collapse>
 			</>}

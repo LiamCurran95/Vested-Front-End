@@ -20,13 +20,13 @@ export const fetchCompanyDetails = (companyName) => {
 };
 
 export function getNewsFeed(companies) {
-  return axios
-    .get(
-      `https://api.marketaux.com/v1/news/all?symbols=${companies}&language=en&filter_entities=true&api_token=${newsKey}`
-    )
-    .then((res) => {
-      return res.data.data;
-    });
+	return axios
+		.get(
+			`https://api.marketaux.com/v1/news/all?symbols=${companies}&filter_entities=true&language=en&api_token=${newsKey}`
+		)
+		.then((res) => {
+			return res.data.data;
+		});
 }
 
 export function getTodaysStockData() {
@@ -222,112 +222,112 @@ export function getEsgData() {
 }
 
 export function getPolygonData() {
-  return vestedApi
-    .get('/polygon')
-    .then((data) => {
-      data;
-      const result = data.data;
-      return result;
-    })
-    .then(({ result }) => {
-      const topCompanies = [
-        'A',
-        'AAPL',
-        'ABG',
-        'ABT',
-        'ACN',
-        'ADBE',
-        'AFG',
-        'ALTR',
-        'AMAT',
-        'AMD',
-        'AMT',
-        'ANET',
-        'APAM',
-        'ARE',
-        'ASGN',
-        'ASIX',
-        'ASML',
-        'AVY',
-        'BCO',
-        'BLL',
-        'CBT',
-        'CC',
-        'CCK',
-        'CDNS',
-        'CMG',
-        'CNHI',
-        'COST',
-        'CR',
-        'CRM',
-        'CSR',
-        'DAR',
-        'DE',
-        'DHR',
-        'DOV',
-        'EBAY',
-        'ETN',
-        'EXPO',
-        'FB',
-        'FIVE',
-        'FLEX',
-        'FN',
-        'FR',
-        'FTNT',
-        'GIL',
-        'GOOGL',
-        'GS',
-        'HOLX',
-        'HPE',
-        'IT',
-        'JBHT',
-        'JBL',
-        'KEYS',
-        'KIM',
-        'LIN',
-        'LLY',
-        'LRCX',
-        'MAT',
-        'MATX',
-        'MC',
-        'MCB',
-        'MHK',
-        'MSFT',
-        'MSI',
-        'MT',
-        'NKE',
-        'NOG',
-        'NTAP',
-        'NVDA',
-        'OC',
-        'ON',
-        'ORCL',
-        'QCOM',
-        'QGEN',
-        'ROG',
-        'SHW',
-        'SMTC',
-        'SPG',
-        'STLA',
-        'STLD',
-        'STM',
-        'SUI',
-        'TEL',
-        'THRM',
-        'TMO',
-        'TSCO',
-        'TW',
-        'TX',
-        'TXN',
-        'TXT',
-        'VSTO',
-        'WCC',
-        'WDAY',
-        'WM',
-        'XYL',
-        'YUM',
-        'ZTS',
-      ];
+	return vestedApi
+		.get("/polygon")
+		.then((data) => {
+			console.log(data)
+			const result = data.data.result
+			return result;
+		})
+		.then((result) => {
+			const topCompanies = [
+				"A",
+				"AAPL",
+				"ABG",
+				"ABT",
+				"ACN",
+				"ADBE",
+				"AFG",
+				"ALTR",
+				"AMAT",
+				"AMD",
+				"AMT",
+				"ANET",
+				"APAM",
+				"ARE",
+				"ASGN",
+				"ASIX",
+				"ASML",
+				"AVY",
+				"BCO",
+				"BLL",
+				"CBT",
+				"CC",
+				"CCK",
+				"CDNS",
+				"CMG",
+				"CNHI",
+				"COST",
+				"CR",
+				"CRM",
+				"CSR",
+				"DAR",
+				"DE",
+				"DHR",
+				"DOV",
+				"EBAY",
+				"ETN",
+				"EXPO",
+				"FB",
+				"FIVE",
+				"FLEX",
+				"FN",
+				"FR",
+				"FTNT",
+				"GIL",
+				"GOOGL",
+				"GS",
+				"HOLX",
+				"HPE",
+				"IT",
+				"JBHT",
+				"JBL",
+				"KEYS",
+				"KIM",
+				"LIN",
+				"LLY",
+				"LRCX",
+				"MAT",
+				"MATX",
+				"MC",
+				"MCB",
+				"MHK",
+				"MSFT",
+				"MSI",
+				"MT",
+				"NKE",
+				"NOG",
+				"NTAP",
+				"NVDA",
+				"OC",
+				"ON",
+				"ORCL",
+				"QCOM",
+				"QGEN",
+				"ROG",
+				"SHW",
+				"SMTC",
+				"SPG",
+				"STLA",
+				"STLD",
+				"STM",
+				"SUI",
+				"TEL",
+				"THRM",
+				"TMO",
+				"TSCO",
+				"TW",
+				"TX",
+				"TXN",
+				"TXT",
+				"VSTO",
+				"WCC",
+				"WDAY",
+				"WM",
+				"XYL",
+				"YUM",
+				"ZTS",
+			];
 
       function compare_symbol(a, b) {
         if (a.ticker.toLowerCase() < b.ticker.toLowerCase()) {
