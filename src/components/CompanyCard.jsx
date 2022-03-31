@@ -1,7 +1,6 @@
 import { fetchCompanyDetails } from "../api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { googleKey } from "../secret_info";
 
 export default function CompanyCard() {
 
@@ -12,7 +11,7 @@ export default function CompanyCard() {
 
   useEffect(()=>{
     setIsLoading(true);
-    fetchCompanyDetails(company,googleKey)
+    fetchCompanyDetails(company)
     .then((response)=>{
     setCompanyData(response)
     setIsLoading(false);

@@ -69,9 +69,23 @@ export function Chart({ tickers }) {
 				xScale={{ type: "band" }}
 				yScale={{ type: "linear" }}
 			>
-				<AnimatedAxis orientation="bottom" />
-				<AnimatedAxis orientation="left" />
-				<AnimatedGrid columns={false} numTicks={4} />
+				<AnimatedAxis
+                    orientation="bottom"
+                    numTicks={5}
+                    hideZero="true"
+                    tickClassName="x-tick"
+                    labelClassName="x-label"
+                />
+                <AnimatedAxis
+                    orientation="left"
+                    hideZero="true"
+                    numTicks={5}
+                    label="Stock Value ($USD)"
+                    tickClassName="x-tick"
+					labelClassName="y-label"
+                />
+                <AnimatedGrid numTicks={5} />
+                <AnimatedGrid numTicks={5} />
 				<AnimatedLineSeries
 					dataKey={`${portfolio[0]}`}
 					data={ticker1ChartData}
