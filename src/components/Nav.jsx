@@ -25,7 +25,7 @@ export default function Nav() {
                     <Link to="/form" style={{ textDecoration: "none" }} id={navClicked ? "show" : "hide"} onClick={() => { setNavClicked(false) }}>New Portfolio</Link>
                 </section>
                 </div>
-                <button onClick={toggleFunction}> {toggle? " ☼ " : " ☾ " } theme </button>
+                <button onClick={toggleFunction}> {toggle? " ☾ - " : " ☼ - " } theme </button>
             </section>
 
             <div className="right-nav-search">

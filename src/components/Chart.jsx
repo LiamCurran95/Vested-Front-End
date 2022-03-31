@@ -63,7 +63,7 @@ export function Chart({ tickers }) {
 	};
 
 	return (
-		<>
+		<section className="chart">
 			<XYChart
 				height={300}
 				xScale={{ type: "band" }}
@@ -119,6 +119,6 @@ export function Chart({ tickers }) {
 					)}
 				/>
 			</XYChart>
-		</>
+		</section>
 	);
 }
