@@ -1,7 +1,4 @@
 import * as React from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Collapse from "./Collapse";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { Link, useParams } from "react-router-dom";
@@ -67,10 +64,6 @@ export default function UserProfile() {
 						</h4>
 					</section>
 
-					{/* {if (isPortfolioLoading === true) <p>"Loading" </p> 
-			else */}
-
-					{/* <Collapse> */}
 					<div className="portfolio-view-buttons">
 						<button
 							onClick={() => {
@@ -144,7 +137,6 @@ export default function UserProfile() {
 							</>
 						)}
 					</section>
-					{/* </Collapse> */}
 				</>
 			)}
 		</main>

@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { generateChartData } from "../util-functions";
 
 import {
-	AnimatedAxis, // any of these can be non-animated equivalents
+	AnimatedAxis,
 	AnimatedGrid,
 	AnimatedLineSeries,
 	XYChart,
@@ -70,22 +70,22 @@ export function Chart({ tickers }) {
 				yScale={{ type: "linear" }}
 			>
 				<AnimatedAxis
-                    orientation="bottom"
-                    numTicks={5}
-                    hideZero="true"
-                    tickClassName="x-tick"
-                    labelClassName="x-label"
-                />
-                <AnimatedAxis
-                    orientation="left"
-                    hideZero="true"
-                    numTicks={5}
-                    label="Stock Value ($USD)"
-                    tickClassName="x-tick"
+					orientation="bottom"
+					numTicks={5}
+					hideZero="true"
+					tickClassName="x-tick"
+					labelClassName="x-label"
+				/>
+				<AnimatedAxis
+					orientation="left"
+					hideZero="true"
+					numTicks={5}
+					label="Stock Value ($USD)"
+					tickClassName="x-tick"
 					labelClassName="y-label"
-                />
-                <AnimatedGrid numTicks={5} />
-                <AnimatedGrid numTicks={5} />
+				/>
+				<AnimatedGrid numTicks={5} />
+				<AnimatedGrid numTicks={5} />
 				<AnimatedLineSeries
 					dataKey={`${portfolio[0]}`}
 					data={ticker1ChartData}
