@@ -20,14 +20,13 @@ export default function UserProfile() {
 		{ portfolio3: loggedInUser.portfolio3.tickers },
 	];
 	const [stockNames, setStockNames] = useState([]);
-	const [changingView, setChangingView] = useState([])
+	const [changingView, setChangingView] = useState([]);
 
 	useEffect(() => {
-		if(changingView.length !== 0) {
-			getStockNames(shownPortfolio)
-				.then((result) => {
+		if (changingView.length !== 0) {
+			getStockNames(shownPortfolio).then((result) => {
 				setStockNames(result);
-				setChangingView([])
+				setChangingView([]);
 			});
 		} else {
 			setIsLoading(false);
@@ -37,15 +36,9 @@ export default function UserProfile() {
 	const changePortfolioView = (param) => {
 		setIsLoading(true);
 		setShownPortfolio(param);
-		setChangingView(true)
+		setChangingView(true);
 		setIsLoading(false);
 	};
-
-	console.log(shownPortfolio)
-	console.log(isLoading)
-	console.log(stockNames)
-	console.log(loggedInUser)
-	console.log(changingView)
 
 	if (isLoading === true) return <p>"Loading" </p>;
 	return (
@@ -57,94 +50,103 @@ export default function UserProfile() {
 				</div>
 			</section>
 
-			{loggedInUser.username === "Guest" ? <h2>Please log in to see your profile</h2> :
-                                    <>
-			<section className="profile-introduction">
-				<h2>your current portfolios</h2>
-				<h4>
-					Here are the portfolios that Vested has generated for you based on the
-					ESG prefences you specified when you added each portfolio
-				</h4>
-				<h4> click to visually explore stock performance in each portfolio over time</h4>
-			</section>
+			{loggedInUser.username === "Guest" ? (
+				<h2>Please log in to see your profile</h2>
+			) : (
+				<>
+					<section className="profile-introduction">
+						<h2>your current portfolios</h2>
+						<h4>
+							Here are the portfolios that Vested has generated for you based on
+							the ESG prefences you specified when you added each portfolio
+						</h4>
+						<h4>
+							{" "}
+							click to visually explore stock performance in each portfolio over
+							time
+						</h4>
+					</section>
 
-			{/* {if (isPortfolioLoading === true) <p>"Loading" </p> 
+					{/* {if (isPortfolioLoading === true) <p>"Loading" </p> 
 			else */}
 
-			<Collapse>
-				<div className="portfolio-view-buttons">
-					<button
-						onClick={() => {
-							changePortfolioView(userPortfolios[0].portfolio1);
-						}}
-					>
-						Portfolio 1
-					</button>
-					<button
-						onClick={() => {
-							changePortfolioView(userPortfolios[1].portfolio2);
-						}}
-						variant="outlined"
-					>
-						Portfolio 2
-					</button>
-					<button
-						onClick={() => {
-							changePortfolioView(userPortfolios[2].portfolio3);
-						}}
-						variant="outlined"
-					>
-						Portfolio 3
-					</button>
-				</div>
-				<section className="profile-data-vis">
+					{/* <Collapse> */}
+					<div className="portfolio-view-buttons">
+						<button
+							onClick={() => {
+								changePortfolioView(userPortfolios[0].portfolio1);
+							}}
+						>
+							Portfolio 1
+						</button>
+						<button
+							onClick={() => {
+								changePortfolioView(userPortfolios[1].portfolio2);
+							}}
+							variant="outlined"
+						>
+							Portfolio 2
+						</button>
+						<button
+							onClick={() => {
+								changePortfolioView(userPortfolios[2].portfolio3);
+							}}
+							variant="outlined"
+						>
+							Portfolio 3
+						</button>
+					</div>
+					<section className="profile-data-vis">
+						{isLoading === true ? "" : <Chart tickers={shownPortfolio} />}
 
-				{isLoading === true ? "" : <Chart tickers={shownPortfolio} />}
-
-				 
-				{stockNames.length === 0 ? "" : (	<>
-						<section className="user-portfolio-list">
-							<h4>Companies in Portfolio </h4>
-							<h5>{stockNames[0].name}</h5>
-							<Link
-								to={`/companyinfo/${stockNames[0].name}`}
-								className="link"
-							>
-								{stockNames[0].ticker}
-							</Link>
-							<h5>{stockNames[1].name}</h5>
-							<Link
-								to={`/companyinfo/${stockNames[1].name}`}
-								className="link"
-							>
-								{stockNames[1].ticker}
-							</Link>
-							<h5>{stockNames[2].name}</h5>
-							<Link
-								to={`/companyinfo/${stockNames[2].name}`}
-								className="link"
-							>
-								{stockNames[2].ticker}
-							</Link>
-							<h5>{stockNames[3].name}</h5>
-							<Link
-								to={`/companyinfo/${stockNames[3].name}`}
-								className="link"
-							>
-								{stockNames[3].ticker}
-							</Link>
-							<h5>{stockNames[4].name}</h5>
-							<Link
-								to={`/companyinfo/${stockNames[4].name}`}
-								className="link"
-							>
-								{stockNames[4].ticker}
-							</Link>
-						</section>
-					</>)}
-				</section>
-			</Collapse>
-			</>}
+						{stockNames.length === 0 ? (
+							""
+						) : (
+							<>
+								<section className="user-portfolio-list">
+									<h4>Companies in Portfolio </h4>
+									<h5>{stockNames[0].name}</h5>
+									<Link
+										to={`/companyinfo/${stockNames[0].name}`}
+										className="link"
+									>
+										{stockNames[0].ticker}
+									</Link>
+									<h5>{stockNames[1].name}</h5>
+									<Link
+										to={`/companyinfo/${stockNames[1].name}`}
+										className="link"
+									>
+										{stockNames[1].ticker}
+									</Link>
+									<h5>{stockNames[2].name}</h5>
+									<Link
+										to={`/companyinfo/${stockNames[2].name}`}
+										className="link"
+									>
+										{stockNames[2].ticker}
+									</Link>
+									<h5>{stockNames[3].name}</h5>
+									<Link
+										to={`/companyinfo/${stockNames[3].name}`}
+										className="link"
+									>
+										{stockNames[3].ticker}
+									</Link>
+									<h5>{stockNames[4].name}</h5>
+									<Link
+										to={`/companyinfo/${stockNames[4].name}`}
+										className="link"
+									>
+										{stockNames[4].ticker}
+									</Link>
+								</section>
+							</>
+						)}
+					</section>
+					{/* </Collapse> */}
+				</>
+			)}
 		</main>
 	);
 }
