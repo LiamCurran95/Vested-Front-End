@@ -10,33 +10,30 @@ export default function OtherUserProfile() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [shownPortfolio, setShownPortfolio] = useState([]);
 	const [userData, setUserData] = useState([]);
-	const [changeView, setChangeView] = useState([])
+	const [changeView, setChangeView] = useState([]);
 
 	useEffect(() => {
 		if (shownPortfolio.length === 0 && changeView.length === 0) {
-			getUserData(username)
-			.then((result) => {
+			getUserData(username).then((result) => {
 				setUserData(result);
 				setShownPortfolio(result.portfolio1.tickers);
 				setIsLoading(false);
 			});
-		} else if(changeView.length === 0) {
-			setIsLoading(false)
+		} else if (changeView.length === 0) {
+			setIsLoading(false);
 		}
 	}, [shownPortfolio]);
 
 	useEffect(() => {
-		if(changeView.length !== 0) {
-			setShownPortfolio(changeView)
-			setChangeView([])
+		if (changeView.length !== 0) {
+			setShownPortfolio(changeView);
+			setChangeView([]);
 		} else {
-			setIsLoading(false)
+			setIsLoading(false);
 		}
-	}, [changeView])
+	}, [changeView]);
 
-	console.log(shownPortfolio)
-	
-	if (isLoading === true) return <p>loading...</p>
+	if (isLoading === true) return <p>loading...</p>;
 	return (
 		<main className="user-profile">
 			<section className="user-banner">
@@ -74,16 +71,22 @@ export default function OtherUserProfile() {
 					Show Portfolio 3
 				</Button>
 			</Stack>
-			{isLoading === true ? <p>Loading Chart...</p> : <Chart tickers={shownPortfolio} />}
+			{isLoading === true ? (
+				<p>Loading Chart...</p>
+			) : (
+				<Chart tickers={shownPortfolio} />
+			)}
 			<>
 				<section className="user-portfolio-list">
-					{shownPortfolio.length !== 0 ? "" : shownPortfolio.map((portfolio, index) => {
-						return (
-							<li key={index}>
-								<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
-							</li>
-						);
-					})}
+					{shownPortfolio.length !== 0
+						? ""
+						: shownPortfolio.map((portfolio, index) => {
+								return (
+									<li key={index}>
+										<Link to={`/companyinfo/${portfolio}`}>{portfolio}</Link>
+									</li>
+								);
+						  })}
 				</section>
 			</>
 		</main>

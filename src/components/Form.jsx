@@ -213,7 +213,6 @@ export default function Form() {
           api.updatePortfolioOfUser(finishedPortfolio, loggedInUser.username, portfolioOption)
           .then((result) => {
             setLoggedInUser(result)
-            console.log(result)
             setReady(true)
           })
         }
