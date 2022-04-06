@@ -10,11 +10,11 @@ This project was created, alongside a back-end database, to encourage first-time
 
 The app was developed by team 'Buzzfeed Investors' as part of the Northcoders Software Development bootcamp - please find links below to the GitHub pages for the other members of the team:
 
-https://github.com/BillyZen
-https://github.com/ellenmelon1
-https://github.com/maire-digital
-https://github.com/mshabuo
-https://github.com/carlc4
+* https://github.com/BillyZen
+* https://github.com/ellenmelon1
+* https://github.com/maire-digital
+* https://github.com/mshabuo
+* https://github.com/carlc4
 
 ### Back-end Repo
 
