@@ -29,33 +29,47 @@ export function Chart({ tickers }) {
 			});
 	}, [tickers]);
 
-	const portfolioStockData = data.filter((item) =>
-		portfolio.includes(item.ticker)
-	);
+	const createXYChartData = (data) => {
+		const portfolioStockData = data.filter((item) =>
+			portfolio.includes(item.ticker)
+		);
+		const portfolioStockDataSorted = portfolioStockData.sort((a, b) =>
+			a.date > b.date ? 1 : b.date > a.date ? -1 : 0
+		);
 
-	let ticker1ChartData = [];
-	let ticker2ChartData = [];
-	let ticker3ChartData = [];
-	let ticker4ChartData = [];
-	let ticker5ChartData = [];
+		let ticker1ChartData = [];
+		let ticker2ChartData = [];
+		let ticker3ChartData = [];
+		let ticker4ChartData = [];
+		let ticker5ChartData = [];
 
-	portfolioStockData.forEach((item) => {
-		if (item.ticker === portfolio[0]) {
-			ticker1ChartData.push({ x: item.date, y: item.averagePrice });
-		}
-		if (item.ticker === portfolio[1]) {
-			ticker2ChartData.push({ x: item.date, y: item.averagePrice });
-		}
-		if (item.ticker === portfolio[2]) {
-			ticker3ChartData.push({ x: item.date, y: item.averagePrice });
-		}
-		if (item.ticker === portfolio[3]) {
-			ticker4ChartData.push({ x: item.date, y: item.averagePrice });
-		}
-		if (item.ticker === portfolio[4]) {
-			ticker5ChartData.push({ x: item.date, y: item.averagePrice });
-		}
-	});
+		portfolioStockDataSorted.forEach((item) => {
+			if (item.ticker === portfolio[0]) {
+				ticker1ChartData.push({ x: item.date, y: item.averagePrice });
+			}
+			if (item.ticker === portfolio[1]) {
+				ticker2ChartData.push({ x: item.date, y: item.averagePrice });
+			}
+			if (item.ticker === portfolio[2]) {
+				ticker3ChartData.push({ x: item.date, y: item.averagePrice });
+			}
+			if (item.ticker === portfolio[3]) {
+				ticker4ChartData.push({ x: item.date, y: item.averagePrice });
+			}
+			if (item.ticker === portfolio[4]) {
+				ticker5ChartData.push({ x: item.date, y: item.averagePrice });
+			}
+		});
+		return [
+			ticker1ChartData,
+			ticker2ChartData,
+			ticker3ChartData,
+			ticker4ChartData,
+			ticker5ChartData,
+		];
+	};
+
+	const XYchartData = createXYChartData(data);
 
 	const accessors = {
 		xAccessor: (d) => d.x,
@@ -88,32 +102,27 @@ export function Chart({ tickers }) {
 				<AnimatedGrid numTicks={5} />
 				<AnimatedLineSeries
 					dataKey={`${portfolio[0]}`}
-					data={ticker1ChartData}
+					data={XYchartData[0]}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
 					dataKey={`${portfolio[1]}`}
-					data={ticker2ChartData}
+					data={XYchartData[1]}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
 					dataKey={`${portfolio[2]}`}
-					data={ticker3ChartData}
+					data={XYchartData[2]}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
 					dataKey={`${portfolio[3]}`}
-					data={ticker4ChartData}
+					data={XYchartData[3]}
 					{...accessors}
 				/>
 				<AnimatedLineSeries
 					dataKey={`${portfolio[4]}`}
-					data={ticker5ChartData}
-					{...accessors}
-				/>
-				<AnimatedLineSeries
-					dataKey={`${portfolio[1]}`}
-					data={ticker2ChartData}
+					data={XYchartData[4]}
 					{...accessors}
 				/>
 				<Tooltip
