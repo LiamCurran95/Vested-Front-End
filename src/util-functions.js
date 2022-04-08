@@ -57,13 +57,6 @@ export async function generatePortfolio(env, soc, gov, user) {
 
 	const portfolioCompanies = sortedCompletelyScoredData.slice(0, 20);
 
-	// const portfolioTickers = portfolioCompanies.map(entry => {
-	//   return entry.ticker
-	// })
-
-	// const portfolioNames = portfolioCompanies.map(entry => {
-	//   return entry.company
-	// })
 	const answers =
 		portfolio1.tickers.length === 0
 			? "formAnswers1"
@@ -79,6 +72,11 @@ export async function generatePortfolio(env, soc, gov, user) {
 export async function generateChartData() {
 	const polygonData = await api.getPolygonData();
 	return polygonData;
+}
+
+export async function generateFormCompanyCard(company) {
+	const companyData = await api.fetchCompanyDetails(company);
+	return companyData;
 }
 
 export async function getStockNames(tickers) {
