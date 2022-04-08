@@ -1,11 +1,7 @@
 import axios from "axios";
-// const newsKey = process.env.REACT_APP_NEWS_API_KEY;
-// const polygonKey = process.env.REACT_APP_POLYGON_API_KEY;
-// const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
-const polygonKey = "XR24JWjgXjJzfydkWc0ej_ksIdzsUaIG";
-const newsKey = "ndfNaKQGXv49tcaELgb1R4cdqxgu9qXwL9hvVxWI";
-const esgKey = "41805cd26631d9ee0d8d68edcc1c30b1";
-const googleKey = "AIzaSyBa5rL6woKrOxqIttRyhxcLGkA2J8_OTyQ";
+const newsKey = process.env.REACT_APP_NEWS_API_KEY;
+const polygonKey = process.env.REACT_APP_POLYGON_API_KEY;
+const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const googleApi = axios.create({
 	baseURL: "https://kgsearch.googleapis.com/v1",
