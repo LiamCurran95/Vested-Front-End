@@ -2,7 +2,6 @@ import axios from "axios";
 const newsKey = process.env.REACT_APP_NEWS_API_KEY;
 const polygonKey = process.env.REACT_APP_POLYGON_API_KEY;
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
-
 const googleApi = axios.create({
 	baseURL: "https://kgsearch.googleapis.com/v1",
 });
