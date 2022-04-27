@@ -43,6 +43,10 @@ export function getTodaysStockData() {
 		.get(
 			`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${date}?adjusted=true&apiKey=${polygonKey}`
 		)
+		.then(result => {
+			if (result) return result
+			.get(`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2022-04-26?adjusted=true&apiKey=${polygonKey}`)
+		})
 		.then(({ data: { results } }) => {
 			const topCompanies = [
 				"A",
