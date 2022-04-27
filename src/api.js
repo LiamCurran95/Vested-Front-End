@@ -31,11 +31,17 @@ export function getNewsFeed(companies) {
 }
 
 export function getTodaysStockData() {
-	const urlDate = "2022-03-25";
+	const today = new Date();
+
+	const day = today.getDate() > 4 ? today.getDate() - 2 : 2;
+	const dd = String(day).padStart(2, '0');
+	const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	const yyyy = today.getFullYear();
+	const date = day === 2 ? yyyy + '-' + (String(today.getMonth()).padStart(2, '0')) + '-' + dd : yyyy + '-' + mm + '-' + dd;
 
 	return axios
 		.get(
-			`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${urlDate}?adjusted=true&apiKey=${polygonKey}`
+			`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${date}?adjusted=true&apiKey=${polygonKey}`
 		)
 		.then(({ data: { results } }) => {
 			const topCompanies = [

@@ -990,14 +990,6 @@ main.company-card section.company-info-text a {
 	align-items: center;
 }
 
-/* main.company-card section.company-info-links {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding-top: 2rem;
-} */
-
-.company
-
 /* Media Queries */
 
 @media (orientation: landscape) {
