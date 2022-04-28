@@ -34,17 +34,24 @@ export function getTodaysStockData() {
 	const today = new Date();
 
 	const day = today.getDate() > 4 ? today.getDate() - 2 : 2;
-	const dd = String(day).padStart(2, '0');
-	const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	const dd = String(day).padStart(2, "0");
+	const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
 	const yyyy = today.getFullYear();
-	const date = day === 2 ? yyyy + '-' + (String(today.getMonth()).padStart(2, '0')) + '-' + dd : yyyy + '-' + mm + '-' + dd;
+	const date =
+		day === 2
+			? yyyy + "-" + String(today.getMonth()).padStart(2, "0") + "-" + dd
+			: yyyy + "-" + mm + "-" + dd;
 
 	return axios
 		.get(
 			`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${date}?adjusted=true&apiKey=${polygonKey}`
 		)
-		.then(result => {
-			return result ? result : axios.get(`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2022-04-26?adjusted=true&apiKey=${polygonKey}`)
+		.then((result) => {
+			return result
+				? result
+				: axios.get(
+						`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2022-04-26?adjusted=true&apiKey=${polygonKey}`
+				  );
 		})
 		.then(({ data: { results } }) => {
 			const topCompanies = [
@@ -162,7 +169,7 @@ export function getTodaysStockData() {
 					const company = {};
 					(company.ticker = result.T),
 						(company.averagePrice = result.vw),
-						(company.date = urlDate);
+						(company.date = date);
 					polygonData.push(company);
 				}
 			});
